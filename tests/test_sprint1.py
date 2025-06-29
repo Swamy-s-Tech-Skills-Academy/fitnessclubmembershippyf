@@ -1,7 +1,12 @@
 # Sprint 1 Tests: Backend Setup + Database Schema
-import pytest
-from datetime import date, time
 from models import db, Member, MembershipPlan, MemberPlan, Trainer, WorkoutSession
+import pytest
+import sys
+import os
+from datetime import date, time
+
+# Add src directory to path
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'src'))
 
 
 class TestDatabaseModels:

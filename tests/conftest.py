@@ -1,6 +1,6 @@
 # Test Configuration for Fitness Club Membership System
-from models import db, Member, MembershipPlan, Trainer, WorkoutSession
 from app import app
+from models import db, Member, MembershipPlan, Trainer, WorkoutSession
 import os
 import sys
 import tempfile

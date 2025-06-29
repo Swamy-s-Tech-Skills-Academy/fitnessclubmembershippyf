@@ -1,13 +1,15 @@
 # Manual Sprint 1 Testing Script
 # Simple test runner without external dependencies
 
-from models import db, Member, MembershipPlan, MemberPlan, Trainer, WorkoutSession
 from app import app
+from models import db, Member, MembershipPlan, MemberPlan, Trainer, WorkoutSession
 import sys
 import os
 from datetime import date, time
 
 # Add src directory to path
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'src'))
+
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'src'))
 
 
