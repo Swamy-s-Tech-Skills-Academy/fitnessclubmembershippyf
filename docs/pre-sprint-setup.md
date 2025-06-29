@@ -4,11 +4,11 @@
 
 ```bash
 # 1. Create virtual environment
-python -m venv venv
+python -m venv .venv
 
 # 2. Activate virtual environment
-venv\Scripts\activate  # Windows
-# source venv/bin/activate  # macOS/Linux
+.venv\Scripts\activate  # Windows
+# source .venv/bin/activate  # macOS/Linux
 
 # 3. Install dependencies
 pip install -r requirements.txt
@@ -30,7 +30,7 @@ python app.py
 
 ```bash
 # 1. Activate environment (every new terminal session)
-venv\Scripts\activate
+.venv\Scripts\activate
 
 # 2. Navigate to appropriate folder
 cd src          # For running the app
@@ -49,7 +49,7 @@ python tests/manual_test_sprint1.py
 fitness-club-membership/     # Always start here
 ├── README.md               # Main documentation
 ├── requirements.txt        # Dependencies (install from here)
-├── venv/                  # Virtual environment
+├── .venv/                  # Virtual environment
 ├── src/                   # Source code (run app.py from here)
 ├── tests/                 # Tests (run tests from here)
 └── docs/                  # Documentation
@@ -61,7 +61,7 @@ fitness-club-membership/     # Always start here
 
 - Ensure you're in project root when creating venv
 - Always activate before installing packages
-- Look for `(venv)` in terminal prompt
+- Look for `(.venv)` in terminal prompt
 
 **Import Errors:**
 
@@ -81,7 +81,7 @@ fitness-club-membership/     # Always start here
 
 ## Success Indicators
 
-- ✅ `(venv)` appears in terminal prompt
+- ✅ `(.venv)` appears in terminal prompt
 - ✅ `pip list` shows Flask and dependencies
 - ✅ Database file exists: `src/instance/fitness_club.db`
 - ✅ App starts without errors

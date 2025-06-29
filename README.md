@@ -64,14 +64,14 @@ A comprehensive full-stack fitness club membership management system built with 
 2. **Create virtual environment**
 
    ```bash
-   python -m venv venv
+   python -m venv .venv
    ```
 
 3. **Activate virtual environment**
 
    ```bash
-   venv\Scripts\activate  # On Windows (PowerShell/CMD)
-   # source venv/bin/activate  # On macOS/Linux
+   .venv\Scripts\activate  # On Windows (PowerShell/CMD)
+   # source .venv/bin/activate  # On macOS/Linux
    ```
 
 4. **Install dependencies**
@@ -133,9 +133,9 @@ Before proceeding with development, ensure:
 2. **Create virtual environment**
 
    ```bash
-   python -m venv venv
-   venv\Scripts\activate  # On Windows (PowerShell/CMD)
-   # source venv/bin/activate  # On macOS/Linux
+   python -m venv .venv
+   .venv\Scripts\activate  # On Windows (PowerShell/CMD)
+   # source .venv/bin/activate  # On macOS/Linux
    ```
 
 3. **Install dependencies**

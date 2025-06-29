@@ -16,7 +16,7 @@ def validate_pre_sprint():
         print(f"   Active: {os.environ['VIRTUAL_ENV']}")
     else:
         print("   ⚠️  Warning: Virtual environment not detected")
-        print("   Run: venv\\Scripts\\activate")
+        print("   Run: .venv\\Scripts\\activate")
 
     # Check 2: Dependencies
     print("\n✅ Check 2: Dependencies")

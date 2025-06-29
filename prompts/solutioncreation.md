@@ -50,17 +50,17 @@ Before starting any sprint, complete these foundational steps:
    cd fitness-club-membership
 
    # Create virtual environment
-   python -m venv venv
+   python -m venv .venv
    ```
 
 3. **Activate Virtual Environment**
 
    ```bash
    # Windows (PowerShell/CMD)
-   venv\Scripts\activate
+   .venv\Scripts\activate
 
    # macOS/Linux
-   source venv/bin/activate
+   source .venv/bin/activate
    ```
 
 4. **Install Dependencies**
@@ -76,7 +76,7 @@ Ensure your project has this structure:
 fitness-club-membership/           # PROJECT ROOT
 ├── README.md                     # Documentation
 ├── requirements.txt              # Dependencies (ROOT LEVEL)
-├── venv/                         # Virtual environment
+├── .venv/                        # Virtual environment
 ├──
 ├── src/                          # SOURCE CODE
 │   ├── app.py                   # Flask application

@@ -419,3 +419,4 @@ FodyWeavers.xsd
 
 # Virtual Environment files
 venv/
+.venv/
