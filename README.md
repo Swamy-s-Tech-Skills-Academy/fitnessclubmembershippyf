@@ -46,8 +46,9 @@ A comprehensive full-stack fitness club membership management system built with 
 
 ### Prerequisites
 
-- Python 3.8+ installed on your system
+- Python 3.8+ installed on your system (Python 3.12.5 recommended)
 - Basic knowledge of Flask and HTML
+- Git for version control
 
 ### Installation
 
@@ -62,7 +63,8 @@ A comprehensive full-stack fitness club membership management system built with 
 
    ```bash
    python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   venv\Scripts\activate  # On Windows (PowerShell/CMD)
+   # source venv/bin/activate  # On macOS/Linux
    ```
 
 3. **Install dependencies**
