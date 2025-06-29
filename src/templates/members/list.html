@@ -12,20 +12,27 @@
                 <div class="relative flex flex-grow items-stretch focus-within:z-10">
                     <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                         <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd" />
+                            <path fill-rule="evenodd"
+                                d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
+                                clip-rule="evenodd" />
                         </svg>
                     </div>
-                    <input type="text" name="search" value="{{ search }}" class="block w-full rounded-none rounded-l-md border-0 py-1.5 pl-10 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6" placeholder="Search members...">
+                    <input type="text" name="search" value="{{ search }}"
+                        class="block w-full rounded-none rounded-l-md border-0 py-1.5 pl-10 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
+                        placeholder="Search members...">
                 </div>
-                <button type="submit" class="relative -ml-px inline-flex items-center gap-x-1.5 rounded-r-md px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                <button type="submit"
+                    class="relative -ml-px inline-flex items-center gap-x-1.5 rounded-r-md px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
                     Search
                 </button>
             </form>
         </div>
         <div class="mt-4 sm:ml-4 sm:mt-0 sm:flex-shrink-0">
-            <a href="{{ url_for('new_member') }}" class="inline-flex items-center rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">
+            <a href="{{ url_for('new_member') }}"
+                class="inline-flex items-center rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">
                 <svg class="-ml-0.5 mr-1.5 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
+                    <path
+                        d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
                 </svg>
                 Add Member
             </a>
@@ -40,11 +47,17 @@
                     <table class="min-w-full divide-y divide-gray-300">
                         <thead class="bg-gray-50">
                             <tr>
-                                <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Member</th>
-                                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Contact</th>
-                                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Age</th>
-                                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Status</th>
-                                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Join Date</th>
+                                <th scope="col"
+                                    class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                                    Member</th>
+                                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                    Contact</th>
+                                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Age
+                                </th>
+                                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Status
+                                </th>
+                                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Join
+                                    Date</th>
                                 <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
                                     <span class="sr-only">Actions</span>
                                 </th>
@@ -56,8 +69,10 @@
                                 <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
                                     <div class="flex items-center">
                                         <div class="h-10 w-10 flex-shrink-0">
-                                            <div class="h-10 w-10 rounded-full bg-gray-300 flex items-center justify-center">
-                                                <span class="text-sm font-medium text-gray-700">{{ member.first_name[0] }}{{ member.last_name[0] }}</span>
+                                            <div
+                                                class="h-10 w-10 rounded-full bg-gray-300 flex items-center justify-center">
+                                                <span class="text-sm font-medium text-gray-700">{{ member.first_name[0]
+                                                    }}{{ member.last_name[0] }}</span>
                                             </div>
                                         </div>
                                         <div class="ml-4">
@@ -74,25 +89,29 @@
                                     {{ member.age or 'Unknown' }}
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                    <span class="inline-flex items-center rounded-full {% if member.status == 'active' %}bg-green-100 text-green-800{% elif member.status == 'inactive' %}bg-gray-100 text-gray-800{% else %}bg-red-100 text-red-800{% endif %} px-2.5 py-0.5 text-xs font-medium">
+                                    <span
+                                        class="inline-flex items-center rounded-full {% if member.status == 'active' %}bg-green-100 text-green-800{% elif member.status == 'inactive' %}bg-gray-100 text-gray-800{% else %}bg-red-100 text-red-800{% endif %} px-2.5 py-0.5 text-xs font-medium">
                                         {{ member.status.title() }}
                                     </span>
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                     {{ member.join_date.strftime('%m/%d/%Y') if member.join_date else 'Unknown' }}
                                 </td>
-                                <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                    <a href="{{ url_for('member_detail', id=member.id) }}" class="text-primary-600 hover:text-primary-900 mr-4">View</a>
-                                    <a href="{{ url_for('edit_member', id=member.id) }}" class="text-primary-600 hover:text-primary-900">Edit</a>
+                                <td
+                                    class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                                    <a href="{{ url_for('member_detail', id=member.id) }}"
+                                        class="text-primary-600 hover:text-primary-900 mr-4">View</a>
+                                    <a href="{{ url_for('edit_member', id=member.id) }}"
+                                        class="text-primary-600 hover:text-primary-900">Edit</a>
                                 </td>
                             </tr>
                             {% else %}
                             <tr>
                                 <td colspan="6" class="px-6 py-4 text-center text-sm text-gray-500">
                                     {% if search %}
-                                        No members found matching "{{ search }}"
+                                    No members found matching "{{ search }}"
                                     {% else %}
-                                        No members registered yet.
+                                    No members registered yet.
                                     {% endif %}
                                 </td>
                             </tr>
@@ -109,46 +128,61 @@
     <div class="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6 mt-4">
         <div class="flex flex-1 justify-between sm:hidden">
             {% if members.has_prev %}
-            <a href="{{ url_for('members', page=members.prev_num, search=search) }}" class="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Previous</a>
+            <a href="{{ url_for('members', page=members.prev_num, search=search) }}"
+                class="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Previous</a>
             {% endif %}
             {% if members.has_next %}
-            <a href="{{ url_for('members', page=members.next_num, search=search) }}" class="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Next</a>
+            <a href="{{ url_for('members', page=members.next_num, search=search) }}"
+                class="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Next</a>
             {% endif %}
         </div>
         <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
             <div>
                 <p class="text-sm text-gray-700">
-                    Showing <span class="font-medium">{{ members.per_page * (members.page - 1) + 1 }}</span> to <span class="font-medium">{{ members.per_page * members.page if members.has_next else members.total }}</span> of <span class="font-medium">{{ members.total }}</span> results
+                    Showing <span class="font-medium">{{ members.per_page * (members.page - 1) + 1 }}</span> to <span
+                        class="font-medium">{{ members.per_page * members.page if members.has_next else members.total
+                        }}</span> of <span class="font-medium">{{ members.total }}</span> results
                 </p>
             </div>
             <div>
                 <nav class="isolate inline-flex -space-x-px rounded-md shadow-sm">
                     {% if members.has_prev %}
-                    <a href="{{ url_for('members', page=members.prev_num, search=search) }}" class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                    <a href="{{ url_for('members', page=members.prev_num, search=search) }}"
+                        class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
                         <span class="sr-only">Previous</span>
                         <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" />
+                            <path fill-rule="evenodd"
+                                d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z"
+                                clip-rule="evenodd" />
                         </svg>
                     </a>
                     {% endif %}
-                    
+
                     {% for page_num in members.iter_pages() %}
-                        {% if page_num %}
-                            {% if page_num != members.page %}
-                            <a href="{{ url_for('members', page=page_num, search=search) }}" class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50">{{ page_num }}</a>
-                            {% else %}
-                            <span class="relative z-10 inline-flex items-center bg-primary-600 px-4 py-2 text-sm font-semibold text-white">{{ page_num }}</span>
-                            {% endif %}
-                        {% else %}
-                        <span class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 ring-1 ring-inset ring-gray-300">...</span>
-                        {% endif %}
+                    {% if page_num %}
+                    {% if page_num != members.page %}
+                    <a href="{{ url_for('members', page=page_num, search=search) }}"
+                        class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50">{{
+                        page_num }}</a>
+                    {% else %}
+                    <span
+                        class="relative z-10 inline-flex items-center bg-primary-600 px-4 py-2 text-sm font-semibold text-white">{{
+                        page_num }}</span>
+                    {% endif %}
+                    {% else %}
+                    <span
+                        class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 ring-1 ring-inset ring-gray-300">...</span>
+                    {% endif %}
                     {% endfor %}
-                    
+
                     {% if members.has_next %}
-                    <a href="{{ url_for('members', page=members.next_num, search=search) }}" class="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                    <a href="{{ url_for('members', page=members.next_num, search=search) }}"
+                        class="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
                         <span class="sr-only">Next</span>
                         <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+                            <path fill-rule="evenodd"
+                                d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
+                                clip-rule="evenodd" />
                         </svg>
                     </a>
                     {% endif %}
