@@ -28,56 +28,24 @@
                     <div class="flex items-center">
                         <div class="flex-shrink-0">
                             <div class="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center">
-                                {% if plan.plan_type == 'monthly' %}
-                                <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
-                                    </path>
+                                <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                                 </svg>
-                                {% elif plan.plan_type == 'yearly' %}
-                                <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z">
-                                    </path>
-                                </svg>
-                                {% else %}
-                                <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                                </svg>
-                                {% endif %}
                             </div>
                         </div>
                         <div class="ml-4">
                             <h3 class="text-lg font-medium text-gray-900">{{ plan.name }}</h3>
-                            <p class="text-sm text-gray-500 capitalize">{{ plan.plan_type }} Plan</p>
+                            <p class="text-sm text-gray-500">Monthly Plan</p>
                         </div>
                     </div>
-                    {% if plan.is_popular %}
-                    <span
-                        class="inline-flex items-center rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800">
-                        Popular
-                    </span>
-                    {% endif %}
                 </div>
 
                 <!-- Price -->
                 <div class="mb-4">
                     <div class="flex items-baseline">
-                        <span class="text-3xl font-bold text-gray-900">${{ "%.0f"|format(plan.price) }}</span>
-                        <span class="ml-1 text-sm text-gray-500">
-                            / {% if plan.plan_type == 'monthly' %}month{% elif plan.plan_type == 'yearly' %}year{% else
-                            %}{{ plan.plan_type }}{% endif %}
-                        </span>
+                        <span class="text-3xl font-bold text-gray-900">${{ "%.0f"|format(plan.monthly_price) }}</span>
+                        <span class="ml-1 text-sm text-gray-500">/ month</span>
                     </div>
-                    {% if plan.plan_type == 'yearly' %}
-                    <p class="text-sm text-green-600 mt-1">
-                        Save ${{ "%.0f"|format((plan.price / 12 * 12) - plan.price) }} per year
-                    </p>
-                    {% endif %}
                 </div>
 
                 <!-- Description -->
@@ -90,8 +58,11 @@
                 <!-- Features -->
                 <div class="mb-6">
                     <h4 class="text-sm font-medium text-gray-900 mb-2">What's included:</h4>
+                    {% if plan.benefits %}
+                    <div class="text-sm text-gray-600">{{ plan.benefits }}</div>
+                    {% else %}
                     <ul class="space-y-2">
-                        {% if plan.plan_type == 'basic' %}
+                        {% if plan.monthly_price <= 30 %}
                         <li class="flex items-center text-sm text-gray-600">
                             <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd"
@@ -108,7 +79,7 @@
                             </svg>
                             Locker room access
                         </li>
-                        {% elif plan.plan_type == 'premium' %}
+                        {% elif plan.monthly_price <= 50 %}
                         <li class="flex items-center text-sm text-gray-600">
                             <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd"
@@ -160,6 +131,7 @@
                         </li>
                         {% endif %}
                     </ul>
+                    {% endif %}
                 </div>
 
                 <!-- Action Button -->
