@@ -77,7 +77,7 @@ If time permits:
 ├── requirements.txt                # Python dependencies
 ├── config.py                      # Configuration settings
 ├── database.py                    # Database models and setup
-├── 
+├──
 ├── templates/
 │   ├── base.html                  # Base template with Tailwind
 │   ├── index.html                 # Homepage/Dashboard
@@ -93,7 +93,7 @@ If time permits:
 │       ├── schedule.html         # Session scheduler
 │       ├── list.html             # Session list
 │       └── book.html             # Book session form
-├── 
+├──
 ├── static/
 │   ├── css/
 │   │   └── styles.css            # Custom CSS (minimal)
@@ -101,29 +101,170 @@ If time permits:
 │   │   └── main.js               # JavaScript functionality
 │   └── images/
 │       └── logo.png              # Club logo
-├── 
+├──
 ├── fitness_club.db               # SQLite database
 └── README.md                     # Project documentation
 ```
 
-## 💡 Copilot Prompt Guide
+## �️ Database Schema
 
-Start typing comments like:
+```sql
+-- Members Table
+CREATE TABLE members (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    phone VARCHAR(20),
+    date_of_birth DATE,
+    gender VARCHAR(10),
+    emergency_contact VARCHAR(100),
+    emergency_phone VARCHAR(20),
+    join_date DATE DEFAULT CURRENT_DATE,
+    status VARCHAR(20) DEFAULT 'active',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
-```python
-# Create a Flask app with SQLite connection
-# Define a route to display the list of members
-# Tailwind CSS layout for the homepage
-# HTML form to register new members
-# Create the database schema for members and plans
+-- Membership Plans Table
+CREATE TABLE membership_plans (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name VARCHAR(50) NOT NULL,
+    description TEXT,
+    monthly_price DECIMAL(10,2) NOT NULL,
+    benefits TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Member Plans (Junction Table)
+CREATE TABLE member_plans (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    member_id INTEGER NOT NULL,
+    plan_id INTEGER NOT NULL,
+    start_date DATE DEFAULT CURRENT_DATE,
+    end_date DATE,
+    status VARCHAR(20) DEFAULT 'active',
+    FOREIGN KEY (member_id) REFERENCES members(id),
+    FOREIGN KEY (plan_id) REFERENCES membership_plans(id)
+);
+
+-- Trainers Table
+CREATE TABLE trainers (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name VARCHAR(100) NOT NULL,
+    specialization VARCHAR(100),
+    email VARCHAR(100),
+    phone VARCHAR(20),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Workout Sessions Table
+CREATE TABLE workout_sessions (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title VARCHAR(100) NOT NULL,
+    description TEXT,
+    trainer_id INTEGER,
+    session_date DATE NOT NULL,
+    start_time TIME NOT NULL,
+    end_time TIME NOT NULL,
+    max_capacity INTEGER DEFAULT 10,
+    current_bookings INTEGER DEFAULT 0,
+    FOREIGN KEY (trainer_id) REFERENCES trainers(id)
+);
+
+-- Session Bookings Table
+CREATE TABLE session_bookings (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    member_id INTEGER NOT NULL,
+    session_id INTEGER NOT NULL,
+    booking_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    status VARCHAR(20) DEFAULT 'confirmed',
+    FOREIGN KEY (member_id) REFERENCES members(id),
+    FOREIGN KEY (session_id) REFERENCES workout_sessions(id)
+);
 ```
 
-Let Copilot help scaffold the code for you!
+## 📋 Sample Data
 
-## ⏱️ Time Challenge
+```sql
+-- Insert sample membership plans
+INSERT INTO membership_plans (name, description, monthly_price, benefits) VALUES
+('Basic', 'Access to gym equipment', 29.99, 'Gym access, Locker room'),
+('Pro', 'Gym + Group classes', 49.99, 'Gym access, Group classes, Locker room'),
+('Elite', 'Full access + Personal training', 79.99, 'All Pro benefits + 2 personal training sessions/month');
 
-Try to complete all core features in 45 minutes. Break it into three 15-minute sprints:
+-- Insert sample trainers
+INSERT INTO trainers (name, specialization, email, phone) VALUES
+('Sarah Johnson', 'Yoga & Pilates', 'sarah@fitclub.com', '555-0101'),
+('Mike Torres', 'Strength Training', 'mike@fitclub.com', '555-0102'),
+('Emma Davis', 'Cardio & HIIT', 'emma@fitclub.com', '555-0103');
+```
 
-1. Backend setup + DB schema
-2. Frontend forms + templates
-3. Integration + polish
+## 💡 Advanced Copilot Prompt Guide
+
+Start with these detailed comments to let Copilot build the application:
+
+```python
+# Create a Flask app with SQLite connection and proper error handling
+# Define database models using SQLAlchemy or raw SQL
+# Create a route to display member dashboard with statistics
+# Implement member registration with form validation
+# Add pagination to member list with search functionality
+# Create membership plan assignment with pricing logic
+# Build workout session scheduler with capacity management
+# Add responsive Tailwind CSS layouts with dark mode support
+# Implement AJAX form submissions for better UX
+# Add CSV export functionality for member data
+```
+
+## ⏱️ Development Timeline
+
+### 🚀 Quick Start (45 minutes)
+
+For rapid prototyping, break into three 15-minute sprints:
+
+1. **Sprint 1**: Backend setup + Basic CRUD
+2. **Sprint 2**: Frontend templates + Forms
+3. **Sprint 3**: Integration + Styling
+
+### 📈 Full Development (2-4 hours)
+
+For a production-ready application:
+
+**Phase 1: Foundation (45 min)**
+
+- [ ] Project setup and dependencies
+- [ ] Database schema creation
+- [ ] Basic Flask app structure
+- [ ] First route and template
+
+**Phase 2: Core Features (90 min)**
+
+- [ ] Member CRUD operations
+- [ ] Membership plan management
+- [ ] Basic session scheduling
+- [ ] Form validation
+
+**Phase 3: Enhanced UI (60 min)**
+
+- [ ] Tailwind CSS styling
+- [ ] Responsive design
+- [ ] Navigation and layout
+- [ ] Error handling and messages
+
+**Phase 4: Advanced Features (45 min)**
+
+- [ ] Search and filtering
+- [ ] Dashboard with statistics
+- [ ] Session booking system
+- [ ] CSV export functionality
+
+## 🎯 Success Metrics
+
+Your project is ready when you can:
+
+- ✅ Register a new member with validation
+- ✅ Assign membership plans to members
+- ✅ Schedule and book workout sessions
+- ✅ View member list with search/filter
+- ✅ Export member data to CSV
+- ✅ Navigate the app on mobile devices
