@@ -42,12 +42,21 @@ def index():
     upcoming_sessions = WorkoutSession.query.filter(
         WorkoutSession.session_date >= date.today()).count()
 
+    # Debug output
+    print(
+        f"DEBUG: total_members={total_members}, active_members={active_members}")
+    print(
+        f"DEBUG: total_sessions={total_sessions}, upcoming_sessions={upcoming_sessions}")
+
     # Recent activities
     recent_members = Member.query.order_by(
         Member.created_at.desc()).limit(5).all()
     upcoming_sessions_list = WorkoutSession.query.filter(
         WorkoutSession.session_date >= date.today()
     ).order_by(WorkoutSession.session_date, WorkoutSession.start_time).limit(5).all()
+
+    print(f"DEBUG: recent_members count={len(recent_members)}")
+    print(f"DEBUG: upcoming_sessions_list count={len(upcoming_sessions_list)}")
 
     return render_template('index.html',
                            total_members=total_members,
