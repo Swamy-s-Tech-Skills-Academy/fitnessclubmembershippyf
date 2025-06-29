@@ -46,7 +46,7 @@ python tests/manual_test_sprint1.py
 ## Project Structure Reference
 
 ```
-fitness-club-membership/     # Always start here
+fittnessclubmembershippyf/     # Always start here
 ├── README.md               # Main documentation
 ├── requirements.txt        # Dependencies (install from here)
 ├── .venv/                  # Virtual environment

@@ -57,8 +57,8 @@ A comprehensive full-stack fitness club membership management system built with 
 1. **Clone and navigate to project**
 
    ```bash
-   git clone https://github.com/your-username/fitness-club-membership.git
-   cd fitness-club-membership
+   git clone https://github.com/your-username/fittnessclubmembershippyf.git
+   cd fittnessclubmembershippyf
    ```
 
 2. **Create virtual environment**
@@ -126,8 +126,8 @@ Before proceeding with development, ensure:
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/your-username/fitness-club-membership.git
-   cd fitness-club-membership
+   git clone https://github.com/your-username/fittnessclubmembershippyf.git
+   cd fittnessclubmembershippyf
    ```
 
 2. **Create virtual environment**
@@ -208,25 +208,40 @@ class Config:
 
 ## 📈 Development Roadmap
 
-### Phase 1 ✅
+### Phase 1: Pre-Sprint + Sprint 1 ✅ COMPLETED
 
-- [x] Basic member CRUD operations
-- [x] Membership plan management
-- [x] Simple session scheduling
+- [x] **Pre-Sprint Setup** - Virtual environment, dependencies, database
+- [x] **Sprint 1: Backend** - Flask app, database models, API endpoints
+- [x] **Database Schema** - 6 tables with relationships implemented
+- [x] **Sample Data** - Members, plans, trainers, sessions loaded
+- [x] **Testing Framework** - Validation scripts and test suite
+- [x] **Development Server** - Running on http://localhost:5000
 
-### Phase 2 🚧
+**Current Status:** Backend foundation complete, ready for frontend development
+
+### Phase 2: Sprint 2 🚧 NEXT
+
+- [ ] **Frontend Templates** - Tailwind CSS responsive layouts
+- [ ] **Member Forms** - Registration and management interfaces
+- [ ] **Dashboard UI** - Statistics and overview page
+- [ ] **Session Management** - Booking and scheduling interface
+
+### Phase 3: Sprint 3 📋 PLANNED
+
+- [ ] **Integration** - Connect frontend with backend APIs
+- [ ] **Form Validation** - Client-side and server-side validation
+- [ ] **Polish & Testing** - Final refinements and bug fixes
+- [ ] **Documentation** - User guides and deployment docs
+
+### Future Enhancements �
 
 - [ ] Payment integration (Stripe)
 - [ ] Email notifications
 - [ ] Advanced reporting
 - [ ] Member check-in system
-
-### Phase 3 📋
-
 - [ ] Mobile app companion
 - [ ] Equipment booking
 - [ ] Nutrition tracking
-- [ ] Social features
 
 ## 🤝 Contributing
 

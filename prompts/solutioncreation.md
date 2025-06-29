@@ -43,14 +43,18 @@ Before starting any sprint, complete these foundational steps:
    python --version  # Should be Python 3.8+ (3.12.5 recommended)
    ```
 
-2. **Create Virtual Environment**
+2. **Create Virtual Environment** ```bash
 
-   ```bash
    # Navigate to project root
-   cd fitness-club-membership
+
+   cd fittnessclubmembershippyf
 
    # Create virtual environment
+
    python -m venv .venv
+
+   ```
+
    ```
 
 3. **Activate Virtual Environment**
@@ -73,7 +77,7 @@ Before starting any sprint, complete these foundational steps:
 Ensure your project has this structure:
 
 ```text
-fitness-club-membership/           # PROJECT ROOT
+fittnessclubmembershippyf/           # PROJECT ROOT
 ├── README.md                     # Documentation
 ├── requirements.txt              # Dependencies (ROOT LEVEL)
 ├── .venv/                        # Virtual environment
@@ -201,7 +205,7 @@ If time permits:
 ## 🧠 Detailed File Structure
 
 ```text
-/fitness-club-membership/
+/fittnessclubmembershippyf/
 ├── app.py                          # Main Flask application
 ├── requirements.txt                # Python dependencies
 ├── config.py                      # Configuration settings
