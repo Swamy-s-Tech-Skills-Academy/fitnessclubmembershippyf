@@ -76,7 +76,8 @@ A comprehensive full-stack fitness club membership management system built with 
 4. **Initialize database**
 
    ```bash
-   python database.py
+   cd src
+   python init_db.py
    ```
 
 5. **Run the application**
