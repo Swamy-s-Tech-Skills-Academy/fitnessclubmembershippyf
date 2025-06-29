@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Fitness Club{% endblock %}
+{% block header %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="px-4 sm:px-0">
+    <!-- Stats Overview -->
+    <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 mb-8">
+        <!-- Total Members -->
+        <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
+            <dt class="truncate text-sm font-medium text-gray-500">Total Members</dt>
+            <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{{ total_members }}</dd>
+        </div>
+
+        <!-- Active Members -->
+        <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
+            <dt class="truncate text-sm font-medium text-gray-500">Active Members</dt>
+            <dd class="mt-1 text-3xl font-semibold tracking-tight text-green-600">{{ active_members }}</dd>
+        </div>
+
+        <!-- Total Sessions -->
+        <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
+            <dt class="truncate text-sm font-medium text-gray-500">Total Sessions</dt>
+            <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{{ total_sessions }}</dd>
+        </div>
+
+        <!-- Upcoming Sessions -->
+        <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
+            <dt class="truncate text-sm font-medium text-gray-500">Upcoming Sessions</dt>
+            <dd class="mt-1 text-3xl font-semibold tracking-tight text-blue-600">{{ upcoming_sessions }}</dd>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
+        <!-- Recent Members -->
+        <div class="overflow-hidden rounded-lg bg-white shadow">
+            <div class="p-6">
+                <h3 class="text-base font-semibold leading-6 text-gray-900">Recent Members</h3>
+                <div class="mt-6 flow-root">
+                    <ul role="list" class="-my-5 divide-y divide-gray-200">
+                        {% for member in recent_members %}
+                        <li class="py-4">
+                            <div class="flex items-center space-x-4">
+                                <div class="flex-shrink-0">
+                                    <div class="h-8 w-8 rounded-full bg-gray-300 flex items-center justify-center">
+                                        <span class="text-sm font-medium text-gray-700">{{ member.first_name[0] }}{{ member.last_name[0] }}</span>
+                                    </div>
+                                </div>
+                                <div class="min-w-0 flex-1">
+                                    <p class="truncate text-sm font-medium text-gray-900">{{ member.full_name }}</p>
+                                    <p class="truncate text-sm text-gray-500">{{ member.email }}</p>
+                                </div>
+                                <div>
+                                    <span class="inline-flex items-center rounded-full {% if member.status == 'active' %}bg-green-100 text-green-800{% else %}bg-gray-100 text-gray-800{% endif %} px-2.5 py-0.5 text-xs font-medium">
+                                        {{ member.status.title() }}
+                                    </span>
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="mt-6">
+                    <a href="{{ url_for('members') }}" class="flex w-full items-center justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                        View all members
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Upcoming Sessions -->
+        <div class="overflow-hidden rounded-lg bg-white shadow">
+            <div class="p-6">
+                <h3 class="text-base font-semibold leading-6 text-gray-900">Upcoming Sessions</h3>
+                <div class="mt-6 flow-root">
+                    <ul role="list" class="-my-5 divide-y divide-gray-200">
+                        {% for session in upcoming_sessions_list %}
+                        <li class="py-4">
+                            <div class="flex items-center space-x-4">
+                                <div class="flex-shrink-0">
+                                    <div class="h-8 w-8 rounded-full bg-blue-100 flex items-center justify-center">
+                                        <svg class="h-4 w-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="min-w-0 flex-1">
+                                    <p class="truncate text-sm font-medium text-gray-900">{{ session.title }}</p>
+                                    <p class="truncate text-sm text-gray-500">
+                                        {{ session.session_date.strftime('%m/%d') }} at {{ session.start_time.strftime('%I:%M %p') }}
+                                        {% if session.trainer %}
+                                        • {{ session.trainer.name }}
+                                        {% endif %}
+                                    </p>
+                                </div>
+                                <div>
+                                    <span class="text-xs text-gray-500">{{ session.current_bookings }}/{{ session.max_capacity }}</span>
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="mt-6">
+                    <a href="{{ url_for('sessions') }}" class="flex w-full items-center justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                        View all sessions
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="mt-8">
+        <h3 class="text-lg font-medium text-gray-900 mb-4">Quick Actions</h3>
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+            <a href="{{ url_for('new_member') }}" class="relative rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm flex items-center space-x-3 hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-primary-500">
+                <div class="flex-shrink-0">
+                    <svg class="h-6 w-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                    </svg>
+                </div>
+                <div class="flex-1 min-w-0">
+                    <span class="absolute inset-0" aria-hidden="true"></span>
+                    <p class="text-sm font-medium text-gray-900">Add New Member</p>
+                    <p class="text-sm text-gray-500">Register a new member</p>
+                </div>
+            </a>
+
+            <a href="{{ url_for('new_session') }}" class="relative rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm flex items-center space-x-3 hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-primary-500">
+                <div class="flex-shrink-0">
+                    <svg class="h-6 w-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                </div>
+                <div class="flex-1 min-w-0">
+                    <span class="absolute inset-0" aria-hidden="true"></span>
+                    <p class="text-sm font-medium text-gray-900">Schedule Session</p>
+                    <p class="text-sm text-gray-500">Create a new workout session</p>
+                </div>
+            </a>
+
+            <a href="{{ url_for('plans') }}" class="relative rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm flex items-center space-x-3 hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-primary-500">
+                <div class="flex-shrink-0">
+                    <svg class="h-6 w-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                </div>
+                <div class="flex-1 min-w-0">
+                    <span class="absolute inset-0" aria-hidden="true"></span>
+                    <p class="text-sm font-medium text-gray-900">View Plans</p>
+                    <p class="text-sm text-gray-500">Manage membership plans</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
