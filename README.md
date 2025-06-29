@@ -50,6 +50,77 @@ A comprehensive full-stack fitness club membership management system built with 
 - Basic knowledge of Flask and HTML
 - Git for version control
 
+### 📋 Pre-Development Setup (Essential)
+
+**Step 1: Environment Setup**
+
+1. **Clone and navigate to project**
+
+   ```bash
+   git clone https://github.com/your-username/fitness-club-membership.git
+   cd fitness-club-membership
+   ```
+
+2. **Create virtual environment**
+
+   ```bash
+   python -m venv venv
+   ```
+
+3. **Activate virtual environment**
+
+   ```bash
+   venv\Scripts\activate  # On Windows (PowerShell/CMD)
+   # source venv/bin/activate  # On macOS/Linux
+   ```
+
+4. **Install dependencies**
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+**Step 2: Database Setup**
+
+5. **Initialize database with sample data**
+
+   ```bash
+   cd src
+   python init_db.py
+   ```
+
+**Step 3: Validation**
+
+6. **Test the setup**
+
+   ```bash
+   # Test database and models
+   cd ../tests
+   python manual_test_sprint1.py
+   ```
+
+7. **Run the application**
+
+   ```bash
+   cd ../src
+   python app.py
+   ```
+
+8. **Verify in browser**
+
+   Navigate to `http://localhost:5000` and confirm the dashboard loads
+
+### ✅ Setup Success Checklist
+
+Before proceeding with development, ensure:
+
+- [ ] Virtual environment is activated (shows in terminal prompt)
+- [ ] All dependencies installed without errors
+- [ ] Database initialized with sample data
+- [ ] Flask app starts and dashboard loads
+- [ ] Tests pass successfully
+- [ ] No import or module errors
+
 ### Installation
 
 1. **Clone the repository**

@@ -23,13 +23,142 @@ Build a lightweight, full-stack web application to:
 
 The goal is to help students practice CRUD operations, basic layout structuring with Tailwind, and working with a local SQLite database.
 
-## 🧱 Tech Stack
+## 🛠️ Tech Stack
 
 | Layer    | Technology   |
 | -------- | ------------ |
 | Backend  | Python Flask |
 | Frontend | Tailwind CSS |
 | Database | SQLite       |
+
+## 📋 Pre-Sprint Setup (Essential First Steps)
+
+Before starting any sprint, complete these foundational steps:
+
+### 🚀 Step 1: Environment Setup
+
+1. **Verify Python Installation**
+
+   ```bash
+   python --version  # Should be Python 3.8+ (3.12.5 recommended)
+   ```
+
+2. **Create Virtual Environment**
+
+   ```bash
+   # Navigate to project root
+   cd fitness-club-membership
+
+   # Create virtual environment
+   python -m venv venv
+   ```
+
+3. **Activate Virtual Environment**
+
+   ```bash
+   # Windows (PowerShell/CMD)
+   venv\Scripts\activate
+
+   # macOS/Linux
+   source venv/bin/activate
+   ```
+
+4. **Install Dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+### 🗂️ Step 2: Project Structure Verification
+
+Ensure your project has this structure:
+
+```text
+fitness-club-membership/           # PROJECT ROOT
+├── README.md                     # Documentation
+├── requirements.txt              # Dependencies (ROOT LEVEL)
+├── venv/                         # Virtual environment
+├──
+├── src/                          # SOURCE CODE
+│   ├── app.py                   # Flask application
+│   ├── models.py                # Database models
+│   ├── config.py                # Configuration
+│   ├── init_db.py               # DB initialization
+│   ├── templates/               # HTML templates
+│   ├── static/                  # CSS/JS/Images
+│   └── instance/                # SQLite database
+├──
+├── tests/                       # TESTS (parallel to src)
+│   ├── conftest.py             # Test configuration
+│   ├── test_sprint1.py         # Sprint tests
+│   └── manual_test_sprint1.py  # Manual tests
+└──
+└── docs/                       # Additional documentation
+```
+
+### 🧪 Step 3: Pre-Sprint Validation
+
+Run these checks before starting any sprint:
+
+1. **Database Initialization**
+
+   ```bash
+   cd src
+   python init_db.py
+   ```
+
+2. **Sprint Testing**
+
+   ```bash
+   # From project root
+   cd tests
+   python manual_test_sprint1.py
+   ```
+
+3. **Flask App Quick Check**
+   ```bash
+   cd src
+   python app.py
+   # Should start server on http://localhost:5000
+   ```
+
+### ✅ Pre-Sprint Checklist
+
+- [ ] Virtual environment created and activated
+- [ ] Dependencies installed successfully
+- [ ] Project structure matches template
+- [ ] Database initialized with sample data
+- [ ] Flask app starts without errors
+- [ ] Tests run successfully
+- [ ] Port 5000 available for development
+
+### 🔧 Troubleshooting Common Issues
+
+**Import Errors:**
+
+- Ensure virtual environment is activated
+- Check that you're in the correct directory
+- Verify all dependencies are installed
+
+**Database Errors:**
+
+- Delete `instance/fitness_club.db` and re-run `init_db.py`
+- Check file permissions in project directory
+
+**Port Conflicts:**
+
+- Change port in `app.py`: `app.run(port=5001)`
+- Kill existing processes using port 5000
+
+### 📊 Success Criteria
+
+Pre-Sprint setup is complete when:
+
+- ✅ Virtual environment shows in terminal prompt
+- ✅ `pip list` shows Flask and dependencies
+- ✅ Database contains sample members and plans
+- ✅ Flask app homepage loads at localhost:5000
+- ✅ No import or module errors
+- ✅ Tests pass without failures
 
 ## ⚙️ Core Features to Implement
 
