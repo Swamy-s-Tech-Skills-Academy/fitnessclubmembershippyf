@@ -22,6 +22,16 @@ def create_app():
 app = create_app()
 
 
+# Context processor to make request.endpoint available in templates
+@app.context_processor
+def inject_template_vars():
+    from flask import request
+    return {
+        'current_endpoint': request.endpoint,
+        'request': request
+    }
+
+
 @app.route('/')
 def index():
     """Homepage with dashboard overview"""
