@@ -284,7 +284,40 @@ class Config:
 - [ ] Equipment booking
 - [ ] Nutrition tracking
 
-## 🤝 Contributing
+## � Testing & Validation
+
+### Quick Validation Script
+
+After setting up the application, you can run a quick validation:
+
+```bash
+# Start the application first
+cd src
+python app.py
+
+# In another terminal, run validation (from project root)
+python validate_application.py
+```
+
+**What it tests:**
+
+- Homepage and main pages load correctly
+- Database contains sample data
+- API endpoints respond properly
+- Basic functionality verification
+
+### Comprehensive Testing
+
+For detailed testing, use the test suite:
+
+```bash
+cd tests
+python quick_validation.py          # 30-second basic test
+python final_test_summary.py        # 2-minute comprehensive test
+python -m pytest test_complete_system.py -v  # Full pytest suite
+```
+
+## �🤝 Contributing
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/AmazingFeature`)

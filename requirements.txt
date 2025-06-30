@@ -23,6 +23,7 @@ blinker==1.6.3
 # Development & Testing
 pytest==7.4.3
 pytest-flask==1.3.0
+requests==2.31.0
 
 # Optional: Production Deployment
 gunicorn==21.2.0

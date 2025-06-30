@@ -1,6 +1,20 @@
 #!/usr/bin/env python3
 """
-Simple test script to validate the fitness club application
+Simple external validation script for the fitness club application.
+
+This script validates the running Flask application by making HTTP requests
+to test endpoints and verify functionality. It's designed for quick validation
+during live coding sessions or after deployment.
+
+Usage:
+1. Start the Flask application: python src/app.py
+2. Run this script: python validate_application.py
+
+Requirements:
+- Flask application must be running on localhost:5000
+- 'requests' library must be installed (pip install requests)
+
+Note: For more comprehensive testing, use the test suite in tests/ folder.
 """
 import sys
 import os
@@ -8,7 +22,7 @@ import requests
 import json
 
 # Add src directory to path
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'src'))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'src'))
 
 
 def test_application():
