@@ -114,11 +114,14 @@ def run_tests():
             db.create_all()
             print("✅ Database creation successful")
 
-            # Test data insertion
+            # Test data insertion with unique email
+            import uuid
+            unique_email = f"test_{uuid.uuid4().hex[:8]}@example.com"
+
             test_member = Member(
                 first_name="Test",
                 last_name="Member",
-                email="test@example.com",
+                email=unique_email,
                 phone="555-1234",
                 date_of_birth=date(1990, 1, 1),  # Proper date object
                 gender="Other",
@@ -133,7 +136,7 @@ def run_tests():
 
             # Test data retrieval
             retrieved_member = Member.query.filter_by(
-                email="test@example.com").first()
+                email=unique_email).first()
             if retrieved_member and retrieved_member.first_name == "Test":
                 print("✅ Database retrieval successful")
             else:

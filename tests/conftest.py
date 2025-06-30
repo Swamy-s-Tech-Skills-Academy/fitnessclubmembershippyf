@@ -7,11 +7,13 @@ import tempfile
 import pytest
 from datetime import date, time
 
-# Add src directory to path
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'src'))
+# Add src directory to path - ensure we can find the modules
+current_dir = os.path.dirname(__file__)
+src_dir = os.path.abspath(os.path.join(current_dir, '..', 'src'))
+if src_dir not in sys.path:
+    sys.path.insert(0, src_dir)
 
 # Now import from src
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'src'))
 
 
 class TestConfig:

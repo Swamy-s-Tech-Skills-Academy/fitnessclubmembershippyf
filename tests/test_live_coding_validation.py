@@ -12,7 +12,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'src'))
 
 def validate_sprint_deliverables():
     """Validate all sprint deliverables are working"""
-    print("🎬 Live Coding Session - Sprint Validation")
+    print("Live Coding Session - Sprint Validation")
     print("=" * 50)
 
     # Sprint 1 Validation: Backend & Database
