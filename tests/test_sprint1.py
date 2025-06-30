@@ -8,6 +8,8 @@ from datetime import date, time
 # Add src directory to path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'src'))
 
+# Import from src
+
 
 class TestDatabaseModels:
     """Test database models and relationships"""
