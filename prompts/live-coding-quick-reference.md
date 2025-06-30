@@ -129,6 +129,7 @@ mkdir src\templates\members src\templates\plans src\templates\sessions
 ### After Sprint 1:
 
 ```bash
+.venv\Scripts\activate
 cd src
 python init_db.py
 python app.py
@@ -138,6 +139,9 @@ python app.py
 ### After Sprint 2:
 
 ```bash
+.venv\Scripts\activate
+cd src
+python app.py
 # Check all templates load
 # Test responsive design
 ```
@@ -145,6 +149,9 @@ python app.py
 ### After Sprint 3:
 
 ```bash
+.venv\Scripts\activate
+cd src
+python app.py
 # Test all features
 # Export CSV files
 # Check mobile view

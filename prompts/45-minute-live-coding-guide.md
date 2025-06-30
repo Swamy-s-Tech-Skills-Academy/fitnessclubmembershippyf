@@ -77,6 +77,8 @@ Use SQLite database in src/instance/fitness_club.db
 ### ✅ **Sprint 1 Validation**:
 
 ```bash
+# Activate virtual environment
+.venv\Scripts\activate
 cd src
 python init_db.py
 python app.py
@@ -132,8 +134,12 @@ Include proper error handling and success messages
 ### ✅ **Sprint 2 Validation**:
 
 ```bash
-# Test all pages load correctly
-# Check responsive design
+# Activate virtual environment (if not already active)
+.venv\Scripts\activate
+cd src
+python app.py
+# Visit http://localhost:5000 - test all pages
+# Check responsive design on different screen sizes
 # Verify forms are styled properly
 ```
 
@@ -186,6 +192,11 @@ The system should be production-ready with all features working smoothly.
 ### ✅ **Sprint 3 Validation**:
 
 ```bash
+# Activate virtual environment (if not already active)
+.venv\Scripts\activate
+cd src
+python app.py
+# Visit http://localhost:5000
 # Test all CRUD operations
 # Export CSV files
 # Test form validation

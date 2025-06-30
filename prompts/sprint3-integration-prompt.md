@@ -38,6 +38,11 @@ The system should be production-ready with all features working smoothly.
 ## ✅ **VALIDATION COMMANDS**
 
 ```bash
+# Activate virtual environment
+.venv\Scripts\activate
+cd src
+python app.py
+# Visit http://localhost:5000
 # Test all CRUD operations
 # Export CSV files
 # Test form validation

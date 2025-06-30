@@ -35,6 +35,8 @@ Use SQLite database in src/instance/fitness_club.db
 ## ✅ **VALIDATION COMMANDS**
 
 ```bash
+# Activate virtual environment
+.venv\Scripts\activate
 cd src
 python init_db.py
 python app.py

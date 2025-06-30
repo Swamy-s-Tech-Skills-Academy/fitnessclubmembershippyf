@@ -34,8 +34,12 @@ Include proper error handling and success messages
 ## ✅ **VALIDATION COMMANDS**
 
 ```bash
-# Test all pages load correctly
-# Check responsive design
+# Activate virtual environment
+.venv\Scripts\activate
+cd src
+python app.py
+# Visit http://localhost:5000 - test all pages
+# Check responsive design on different screen sizes
 # Verify forms are styled properly
 ```
 
