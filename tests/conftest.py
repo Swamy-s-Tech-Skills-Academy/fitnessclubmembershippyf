@@ -1,4 +1,6 @@
 # Test Configuration for Fitness Club Membership System
+from app import app
+from models import db, Member, MembershipPlan, Trainer, WorkoutSession
 import os
 import sys
 import tempfile
@@ -9,12 +11,6 @@ from datetime import date, time
 current_dir = os.path.dirname(__file__)
 src_dir = os.path.abspath(os.path.join(current_dir, '..', 'src'))
 sys.path.insert(0, src_dir)
-
-# Now import from src
-current_dir = os.path.dirname(__file__)
-src_dir = os.path.abspath(os.path.join(current_dir, '..', 'src'))
-if src_dir not in sys.path:
-    sys.path.insert(0, src_dir)
 
 # Now import from src
 

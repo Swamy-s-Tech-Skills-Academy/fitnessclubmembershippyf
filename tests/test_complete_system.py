@@ -2,8 +2,8 @@
 Test Suite for Fitness Club Membership System
 Tests all major functionality including models, routes, and business logic.
 """
-from app import app
 from models import db, Member, MembershipPlan, Trainer, WorkoutSession, MemberPlan, SessionBooking
+from app import app
 import json
 import pytest
 import sys
@@ -14,8 +14,6 @@ from datetime import date, time, datetime
 current_dir = os.path.dirname(__file__)
 src_dir = os.path.abspath(os.path.join(current_dir, '..', 'src'))
 sys.path.insert(0, src_dir)
-
-# Now import from src
 
 # Now import from src
 
