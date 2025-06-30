@@ -11,13 +11,11 @@ import os
 from datetime import date, time, datetime
 
 # Add src directory to path
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'src'))
+current_dir = os.path.dirname(__file__)
+src_dir = os.path.abspath(os.path.join(current_dir, '..', 'src'))
+sys.path.insert(0, src_dir)
 
 # Now import from src
-
-
-# Add src directory to path
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'src'))
 
 # Now import from src
 

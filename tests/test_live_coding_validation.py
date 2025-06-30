@@ -146,7 +146,7 @@ def validate_sprint_deliverables():
         return False
 
     print("\n" + "=" * 50)
-    print("🎊 LIVE CODING SESSION READY! 🎊")
+    print("[SUCCESS] LIVE CODING SESSION READY!")
     print("[OK] All sprints validated successfully")
     print("[OK] System is production-ready")
     print("[OK] Perfect for demonstration!")
@@ -158,7 +158,7 @@ def validate_sprint_deliverables():
 if __name__ == '__main__':
     success = validate_sprint_deliverables()
     if success:
-        print("\n🚀 You're ready to rock the live coding session!")
+        print("\n[SUCCESS] You're ready to rock the live coding session!")
     else:
         print("\n[ERROR] Please fix issues before live coding session.")
 
