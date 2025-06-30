@@ -115,6 +115,31 @@ _Special validation for live coding sessions_
 
 ### **🎯 RECOMMENDED TESTING SEQUENCE:**
 
+**For Live Coding Demos (⚡ FASTEST):**
+
+```powershell
+cd tests
+python test_live_coding_validation.py  # Sprint validation
+```
+
+**For Quick Verification (⭐ MOST RELIABLE):**
+
+```powershell
+cd tests
+python quick_validation.py             # 30-second validation
+python final_test_summary.py          # 2-minute comprehensive check
+```
+
+**For External Testing (🌐 REQUIRES FLASK RUNNING):**
+
+```powershell
+# Terminal 1: Start Flask app
+cd src && python app.py
+
+# Terminal 2: Run external validator
+cd tests && python validate_application.py
+```
+
 #### **For Live Coding Sessions:**
 
 1. **Quick Check**: `python quick_validation.py` (30 seconds)
