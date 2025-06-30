@@ -1,14 +1,19 @@
 # Test Configuration for Fitness Club Membership System
-from app import app
 from models import db, Member, MembershipPlan, Trainer, WorkoutSession
+from app import app
 import os
 import sys
 import tempfile
 import pytest
 from datetime import date, time
 
-# Add src directory to path
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'src'))
+# Add src directory to path - ensure we can find the modules
+current_dir = os.path.dirname(__file__)
+src_dir = os.path.abspath(os.path.join(current_dir, '..', 'src'))
+if src_dir not in sys.path:
+    sys.path.insert(0, src_dir)
+
+# Now import from src
 
 
 class TestConfig:
