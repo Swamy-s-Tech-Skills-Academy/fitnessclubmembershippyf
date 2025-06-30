@@ -1,6 +1,4 @@
 # Test Configuration for Fitness Club Membership System
-from app import app
-from models import db, Member, MembershipPlan, Trainer, WorkoutSession
 import os
 import sys
 import tempfile
@@ -8,6 +6,11 @@ import pytest
 from datetime import date, time
 
 # Add src directory to path
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'src'))
+
+# Now import from src
+from app import app
+from models import db, Member, MembershipPlan, Trainer, WorkoutSession
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'src'))
 
 

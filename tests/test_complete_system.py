@@ -209,7 +209,7 @@ class TestRoutes:
 
     def test_member_creation_page(self, client):
         """Test member creation form page"""
-        response = client.get('/members/create')
+        response = client.get('/members/new')  # Correct route
         assert response.status_code == 200
         assert b'first_name' in response.data
         assert b'email' in response.data
@@ -231,7 +231,7 @@ class TestMemberCreation:
             'emergency_phone': '555-8888'
         }
 
-        response = client.post('/members/create', data=member_data)
+        response = client.post('/members/new', data=member_data)  # Correct route
 
         # Should redirect on success
         assert response.status_code in [200, 302]
@@ -255,7 +255,7 @@ class TestMemberCreation:
             'emergency_phone': '555-8888'
         }
 
-        response = client.post('/members/create', data=member_data)
+        response = client.post('/members/new', data=member_data)  # Correct route
 
         # Should show error or stay on form
         assert response.status_code == 200
@@ -267,7 +267,7 @@ class TestDataExport:
 
     def test_members_export(self, client):
         """Test members CSV export"""
-        response = client.get('/export/members')
+        response = client.get('/members/export')  # Correct route
         assert response.status_code == 200
         assert response.headers['Content-Type'] == 'text/csv; charset=utf-8'
         assert b'Alice' in response.data
@@ -275,7 +275,7 @@ class TestDataExport:
 
     def test_sessions_export(self, client):
         """Test sessions CSV export"""
-        response = client.get('/export/sessions')
+        response = client.get('/sessions/export')  # Correct route
         assert response.status_code == 200
         assert response.headers['Content-Type'] == 'text/csv; charset=utf-8'
         assert b'Morning Cardio' in response.data
@@ -303,7 +303,7 @@ class TestAPIEndpoints:
         """Test member status toggle API"""
         with app.app_context():
             member = Member.query.filter_by(email="alice@example.com").first()
-            response = client.post(f'/api/member/{member.id}/toggle-status')
+            response = client.post(f'/api/members/{member.id}/toggle-status')  # Correct route
             assert response.status_code == 200
 
             # Check status was changed
