@@ -2,7 +2,7 @@
 
 ## 🎯 **COPY-PASTE PROMPT FOR SPRINT 2**
 
-```
+```text
 Create a complete responsive frontend for the fitness club system using Tailwind CSS:
 
 TEMPLATES NEEDED:

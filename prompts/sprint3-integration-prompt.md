@@ -2,7 +2,7 @@
 
 ## 🎯 **COPY-PASTE PROMPT FOR SPRINT 3**
 
-```
+```text
 Complete the fitness club system with advanced features and production polish:
 
 ADVANCED FEATURES TO ADD:

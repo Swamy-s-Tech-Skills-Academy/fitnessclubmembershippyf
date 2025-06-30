@@ -2,7 +2,7 @@
 
 ## 🎯 **COPY-PASTE PROMPT FOR SPRINT 1**
 
-```
+```text
 Build a complete Flask backend for a fitness club membership system with the following requirements:
 
 MODELS NEEDED:
