@@ -231,7 +231,8 @@ class TestMemberCreation:
             'emergency_phone': '555-8888'
         }
 
-        response = client.post('/members/new', data=member_data)  # Correct route
+        response = client.post(
+            '/members/new', data=member_data)  # Correct route
 
         # Should redirect on success
         assert response.status_code in [200, 302]
@@ -255,7 +256,8 @@ class TestMemberCreation:
             'emergency_phone': '555-8888'
         }
 
-        response = client.post('/members/new', data=member_data)  # Correct route
+        response = client.post(
+            '/members/new', data=member_data)  # Correct route
 
         # Should show error or stay on form
         assert response.status_code == 200
@@ -303,7 +305,8 @@ class TestAPIEndpoints:
         """Test member status toggle API"""
         with app.app_context():
             member = Member.query.filter_by(email="alice@example.com").first()
-            response = client.post(f'/api/members/{member.id}/toggle-status')  # Correct route
+            response = client.post(
+                f'/api/members/{member.id}/toggle-status')  # Correct route
             assert response.status_code == 200
 
             # Check status was changed
