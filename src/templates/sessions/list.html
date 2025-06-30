@@ -1,0 +1,245 @@
+{% extends "base.html" %}
+
+{% block title %}Workout Sessions - Fitness Club{% endblock %}
+{% block header %}Workout Sessions{% endblock %}
+
+{% block content %}
+<div class="px-4 sm:px-0">
+    <!-- Header with controls -->
+    <div class="sm:flex sm:items-center sm:justify-between mb-6">
+        <div>
+            <p class="text-sm text-gray-700">Manage and book workout sessions for your members.</p>
+        </div>
+        <div class="mt-4 sm:ml-4 sm:mt-0 sm:flex sm:space-x-3">
+            <a href="{{ url_for('export_sessions') }}"
+                class="inline-flex items-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500">
+                <svg class="-ml-0.5 mr-1.5 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                    </path>
+                </svg>
+                Export CSV
+            </a>
+            <a href="{{ url_for('new_session') }}"
+                class="inline-flex items-center rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500">
+                <svg class="-ml-0.5 mr-1.5 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path
+                        d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
+                </svg>
+                Schedule Session
+            </a>
+        </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="bg-white rounded-lg shadow p-4 mb-6">
+        <form method="GET" class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+            <div>
+                <label for="date" class="block text-sm font-medium text-gray-700">Filter by Date</label>
+                <input type="date" name="date" id="date" value="{{ filter_date or '' }}"
+                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm">
+            </div>
+            <div>
+                <label for="trainer" class="block text-sm font-medium text-gray-700">Filter by Trainer</label>
+                <select name="trainer" id="trainer"
+                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm">
+                    <option value="">All Trainers</option>
+                    {% for trainer in trainers %}
+                    <option value="{{ trainer.id }}" {% if filter_trainer==trainer.id|string %}selected{% endif %}>
+                        {{ trainer.name }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="flex items-end">
+                <button type="submit"
+                    class="w-full bg-primary-600 text-white px-4 py-2 rounded-md hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500">
+                    Apply Filters
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Sessions Grid -->
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {% for session in sessions.items %}
+        <div class="relative overflow-hidden rounded-lg bg-white shadow">
+            <div class="p-6">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <div class="h-10 w-10 rounded-lg bg-primary-100 flex items-center justify-center">
+                                <svg class="h-6 w-6 text-primary-600" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-lg font-medium text-gray-900">{{ session.title }}</h3>
+                            {% if session.trainer %}
+                            <p class="text-sm text-gray-500">with {{ session.trainer.name }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="flex-shrink-0">
+                        {% if session.is_full %}
+                        <span
+                            class="inline-flex items-center rounded-full bg-red-100 px-2.5 py-0.5 text-xs font-medium text-red-800">Full</span>
+                        {% elif session.available_spots <= 3 %} <span
+                            class="inline-flex items-center rounded-full bg-yellow-100 px-2.5 py-0.5 text-xs font-medium text-yellow-800">
+                            {{ session.available_spots }} left</span>
+                            {% else %}
+                            <span
+                                class="inline-flex items-center rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800">Available</span>
+                            {% endif %}
+                    </div>
+                </div>
+
+                {% if session.description %}
+                <p class="mt-4 text-sm text-gray-600">{{ session.description }}</p>
+                {% endif %}
+
+                <div class="mt-4 space-y-2">
+                    <div class="flex items-center text-sm text-gray-500">
+                        <svg class="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                            </path>
+                        </svg>
+                        {{ session.session_date.strftime('%A, %B %d, %Y') }}
+                    </div>
+                    <div class="flex items-center text-sm text-gray-500">
+                        <svg class="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        {{ session.start_time.strftime('%I:%M %p') }} - {{ session.end_time.strftime('%I:%M %p') }}
+                    </div>
+                    <div class="flex items-center text-sm text-gray-500">
+                        <svg class="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z">
+                            </path>
+                        </svg>
+                        {{ session.current_bookings }}/{{ session.max_capacity }} members
+                    </div>
+                </div>
+
+                <!-- Quick Book Form -->
+                {% if not session.is_full %}
+                <div class="mt-6 border-t border-gray-200 pt-4">
+                    <form method="POST" action="{{ url_for('book_session', id=session.id) }}" class="flex space-x-2">
+                        <select name="member_id" required
+                            class="flex-1 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6">
+                            <option value="">Select member...</option>
+                            <!-- In a real app, you'd populate this with members -->
+                            <option value="1">John Doe</option>
+                            <option value="2">Jane Smith</option>
+                            <option value="3">Mike Johnson</option>
+                        </select>
+                        <button type="submit"
+                            class="rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">
+                            Book
+                        </button>
+                    </form>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% else %}
+        <div class="col-span-full">
+            <div class="text-center py-12">
+                <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                    </path>
+                </svg>
+                <h3 class="mt-2 text-sm font-semibold text-gray-900">No sessions scheduled</h3>
+                <p class="mt-1 text-sm text-gray-500">Get started by scheduling your first workout session.</p>
+                <div class="mt-6">
+                    <a href="{{ url_for('new_session') }}"
+                        class="inline-flex items-center rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">
+                        <svg class="-ml-0.5 mr-1.5 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path
+                                d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
+                        </svg>
+                        Schedule Session
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    {% if sessions.pages > 1 %}
+    <div class="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6 mt-8">
+        <div class="flex flex-1 justify-between sm:hidden">
+            {% if sessions.has_prev %}
+            <a href="{{ url_for('sessions', page=sessions.prev_num) }}"
+                class="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Previous</a>
+            {% endif %}
+            {% if sessions.has_next %}
+            <a href="{{ url_for('sessions', page=sessions.next_num) }}"
+                class="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Next</a>
+            {% endif %}
+        </div>
+        <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+            <div>
+                <p class="text-sm text-gray-700">
+                    Showing <span class="font-medium">{{ sessions.per_page * (sessions.page - 1) + 1 }}</span> to <span
+                        class="font-medium">{{ sessions.per_page * sessions.page if sessions.has_next else
+                        sessions.total }}</span> of <span class="font-medium">{{ sessions.total }}</span> results
+                </p>
+            </div>
+            <div>
+                <nav class="isolate inline-flex -space-x-px rounded-md shadow-sm">
+                    {% if sessions.has_prev %}
+                    <a href="{{ url_for('sessions', page=sessions.prev_num) }}"
+                        class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                        <span class="sr-only">Previous</span>
+                        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                    {% endif %}
+
+                    {% for page_num in sessions.iter_pages() %}
+                    {% if page_num %}
+                    {% if page_num != sessions.page %}
+                    <a href="{{ url_for('sessions', page=page_num) }}"
+                        class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50">{{
+                        page_num }}</a>
+                    {% else %}
+                    <span
+                        class="relative z-10 inline-flex items-center bg-primary-600 px-4 py-2 text-sm font-semibold text-white">{{
+                        page_num }}</span>
+                    {% endif %}
+                    {% else %}
+                    <span
+                        class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 ring-1 ring-inset ring-gray-300">...</span>
+                    {% endif %}
+                    {% endfor %}
+
+                    {% if sessions.has_next %}
+                    <a href="{{ url_for('sessions', page=sessions.next_num) }}"
+                        class="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                        <span class="sr-only">Next</span>
+                        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                    {% endif %}
+                </nav>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
