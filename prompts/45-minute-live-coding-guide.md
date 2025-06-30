@@ -193,12 +193,13 @@ with member management, session booking, and analytics dashboard."
 
 ## 🧪 **QUICK VALIDATION SCRIPT**
 
-### **Using the Root-Level Validator**
+### **Using the Application Validator**
 
 After completing all sprints, you can use the built-in validation script:
 
 ```powershell
 # From project root (make sure Flask app is running)
+cd tests
 python validate_application.py
 ```
 

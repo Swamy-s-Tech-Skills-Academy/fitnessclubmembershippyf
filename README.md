@@ -295,7 +295,8 @@ After setting up the application, you can run a quick validation:
 cd src
 python app.py
 
-# In another terminal, run validation (from project root)
+# In another terminal, run validation
+cd tests
 python validate_application.py
 ```
 
