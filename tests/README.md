@@ -9,6 +9,7 @@ The `tests/` folder contains comprehensive testing for the Fitness Club Membersh
 ### **Quick Validation:**
 
 - **`quick_validation.py`** ⭐ - **FASTEST TEST** - Basic functionality check (30 seconds)
+- **`validate_application.py`** - **EXTERNAL VALIDATOR** - HTTP-based testing (requires running Flask app)
 - **`final_test_summary.py`** - Comprehensive feature validation (2 minutes)
 
 ### **Comprehensive Testing:**
@@ -85,7 +86,23 @@ python -m pytest test_complete_system.py -v --tb=short
 
 _Professional pytest suite with fixtures_
 
-### **Method 6: Live Coding Validation:**
+### **Method 6: External Application Validator (🌐 LIVE DEMO):**
+
+**From project root:**
+
+```powershell
+# First, start the Flask app in one terminal:
+cd src
+python app.py
+
+# Then, in another terminal, run the external validator:
+cd tests
+python validate_application.py
+```
+
+_External HTTP-based validation for live demos (requires running Flask app)_
+
+### **Method 7: Live Coding Validation:**
 
 **From project root:**
 
@@ -97,6 +114,31 @@ python test_live_coding_validation.py
 _Special validation for live coding sessions_
 
 ### **🎯 RECOMMENDED TESTING SEQUENCE:**
+
+**For Live Coding Demos (⚡ FASTEST):**
+
+```powershell
+cd tests
+python test_live_coding_validation.py  # Sprint validation
+```
+
+**For Quick Verification (⭐ MOST RELIABLE):**
+
+```powershell
+cd tests
+python quick_validation.py             # 30-second validation
+python final_test_summary.py          # 2-minute comprehensive check
+```
+
+**For External Testing (🌐 REQUIRES FLASK RUNNING):**
+
+```powershell
+# Terminal 1: Start Flask app
+cd src && python app.py
+
+# Terminal 2: Run external validator
+cd tests && python validate_application.py
+```
 
 #### **For Live Coding Sessions:**
 

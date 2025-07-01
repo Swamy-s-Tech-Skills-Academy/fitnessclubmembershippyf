@@ -23,6 +23,7 @@ DEPENDENCIES TO INSTALL:
 - Flask==3.0.0
 - Flask-SQLAlchemy==3.1.1
 - Werkzeug==3.0.1
+- requests==2.31.0 (for validation script)
 
 Create requirements.txt with these dependencies and set up virtual environment.
 ```
@@ -37,7 +38,8 @@ python -m venv .venv
 # Create requirements.txt
 echo "Flask==3.0.0
 Flask-SQLAlchemy==3.1.1
-Werkzeug==3.0.1" > requirements.txt
+Werkzeug==3.0.1
+requests==2.31.0" > requirements.txt
 
 # Install dependencies
 pip install -r requirements.txt
