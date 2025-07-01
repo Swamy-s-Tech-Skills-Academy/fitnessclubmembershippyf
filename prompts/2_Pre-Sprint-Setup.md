@@ -59,22 +59,38 @@ Create requirements.txt with these dependencies and set up virtual environment.
 ## ✅ **SETUP COMMANDS**
 
 ```bash
-# Create and activate virtual environment
+# ✅ Create virtual environment
 python -m venv .venv
-.venv\Scripts\activate  # Windows
 
-# Install dependencies from existing requirements.txt
+# ✅ Activate virtual environment (choose your platform)
+# Windows:
+.venv\Scripts\activate
+# macOS/Linux:
+# source .venv/bin/activate
+
+# ✅ Install dependencies from existing requirements.txt
 pip install -r requirements.txt
 
-# Create folder structure
-mkdir src tests docs
-mkdir src\templates src\static src\instance
+# ✅ Create folder structure (cross-platform)
+mkdir -p src/templates src/static src/instance
+mkdir -p tests docs
+
+# ✅ Create .gitignore for clean repository (early setup)
+cat <<EOF > .gitignore
+.venv/
+__pycache__/
+*.pyc
+instance/
+.env
+*.db
+.pytest_cache/
+EOF
 ```
 
 ## 🏠 **CREATE BASIC WELCOME HOME PAGE**
 
 ```bash
-# Create basic Flask app (src/app.py) using cat for better formatting
+# ✅ Create basic Flask app (src/app.py) using cat for better formatting
 cat <<EOF > src/app.py
 from flask import Flask, render_template
 
@@ -88,7 +104,7 @@ if __name__ == '__main__':
     app.run(debug=True)
 EOF
 
-# Create welcome template (src/templates/index.html)
+# ✅ Create welcome template (src/templates/index.html)
 cat <<EOF > src/templates/index.html
 <!DOCTYPE html>
 <html lang="en">
@@ -112,18 +128,7 @@ cat <<EOF > src/templates/index.html
 </html>
 EOF
 
-# Create .gitignore for clean repository
-cat <<EOF > .gitignore
-.venv/
-__pycache__/
-*.pyc
-instance/
-.env
-*.db
-.pytest_cache/
-EOF
-
-# Create test placeholder for validation
+# ✅ Create test placeholder for validation
 cat <<EOF > tests/test_home.py
 import pytest
 import sys
@@ -141,6 +146,18 @@ def test_home_page(client):
     response = client.get('/')
     assert response.status_code == 200
     assert b"Welcome to Fitness Club" in response.data
+EOF
+
+# ✅ Create Copilot configuration for better assistance
+mkdir -p .copilot
+cat <<EOF > .copilot/settings.json
+{
+  "projectType": "flask",
+  "useVirtualEnv": true,
+  "testFramework": "pytest",
+  "frontend": "tailwindcss",
+  "database": "sqlite"
+}
 EOF
 ```
 
@@ -207,12 +224,14 @@ EOF
 - ✅ Virtual environment activated
 - ✅ All dependencies installed from requirements.txt
 - ✅ Folder structure created (src/, tests/, docs/, templates/, static/, instance/)
+- ✅ .gitignore file created for clean repository
 - ✅ Basic Flask app created (src/app.py)
 - ✅ Welcome home page template created (src/templates/index.html)
-- ✅ .gitignore file created for clean repository
 - ✅ Test file created (tests/test_home.py) for validation
+- ✅ Copilot configuration added (.copilot/settings.json)
 - ✅ TailwindCSS CDN ready for use in templates
 - ✅ Working Flask app with "Welcome to Fitness Club" H1
+- ✅ Cross-platform compatibility (Windows/macOS/Linux)
 - ✅ Ready for Sprint 1 development
 
 **Time**: 5 minutes
@@ -222,12 +241,12 @@ EOF
 ## 🚀 **TEST YOUR SETUP**
 
 ```bash
-# Test the basic Flask app
+# ✅ Test the basic Flask app
 cd src
 python app.py
 # Visit http://localhost:5000 - you should see "Welcome to Fitness Club"
 
-# Test with pytest (optional validation)
+# ✅ Test with pytest (optional validation)
 cd ..
 pytest tests/test_home.py -v
 ```
@@ -237,9 +256,21 @@ pytest tests/test_home.py -v
 This setup is optimized for Copilot Agent execution:
 
 - ✅ Uses `cat <<EOF` for better multiline file creation
+- ✅ Cross-platform commands (Windows/macOS/Linux)
+- ✅ Comment headers for clear bash block identification
 - ✅ Scriptable commands with clear separation
 - ✅ Includes .gitignore for clean repository
 - ✅ Test validation included
+- ✅ Copilot configuration for contextual assistance
 - ✅ No ambiguous shell syntax
+
+## 📚 **QUICK ACCESS TO OTHER PROMPTS**
+
+- [3_Sprint1-Backend.md](3_Sprint1-Backend.md) - 🛠 Backend Development
+- [4_Sprint2-Frontend.md](4_Sprint2-Frontend.md) - 🎨 Frontend Templates
+- [5_Sprint3-Integration.md](5_Sprint3-Integration.md) - 🔗 Integration & Polish
+- [6_Master-All-Prompts.md](6_Master-All-Prompts.md) - 🧾 All Prompts Combined
+- [7_Quick-Reference.md](7_Quick-Reference.md) - ✅ Validation Checklist
+- [8_Organization-Guide.md](8_Organization-Guide.md) - 📂 Project Structure
 
 **TailwindCSS Note**: The welcome template already includes TailwindCSS CDN, so you'll see styled content immediately!
