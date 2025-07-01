@@ -56,6 +56,39 @@ Welcome to the **Fitness Club Membership System** – a 45-minute live coding de
 
 ---
 
+## 🧠 Contextual Path Awareness
+
+Copilot Agent must remember:
+
+- The `src/` and `tests/` folders are **at the same level** in the project root.
+- Test files (like `tests/test_home.py`) must **manually add `src/` to `sys.path`** before importing from `src`.
+
+### 🔧 Example (for `test_home.py`)
+
+```python
+# isort: off
+import pytest
+import sys
+import os
+
+# Add the src directory to the Python path
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'src'))
+
+# Import the Flask app after path is adjusted
+from app import app  # noqa
+# isort: on
+```
+
+> ⚠️ Copilot should **not move the `from app import app`** line above the `sys.path.insert(...)`. If necessary, use inline imports or disable `isort` for that block.
+
+### 🛡 Why It Matters
+
+- Prevents **`ModuleNotFoundError`** in test execution
+- Ensures correct import behavior when using `pytest` from root directory
+- Supports multi-platform compatibility (VS Code, GitHub Codespaces, etc.)
+
+---
+
 ## 🚦 Workflow and Sprint Files
 
 ### 🛠 Sprint Files (Sequential)
@@ -145,11 +178,23 @@ Copilot should:
 
 This ensures quality, clarity, and a smooth live demo flow.
 
-1. **Generate code for the current sprint**
-2. **Wait for Swamy to test and validate**
-3. **Incorporate any feedback**
-4. **Proceed to the next sprint only after Swamy explicitly agrees**
+---
 
-This ensures quality, clarity, and a smooth live demo flow.
+## 📂 Folder Purpose Clarification
+
+### 🧾 `docs/` – Documentation for Humans
+
+- Contains supporting documentation, references, and helper files.
+- Used by Swamy or contributors for understanding structure, flow, or writing articles.
+- **Not intended for Copilot code generation.**
+
+### 💡 `prompts/` – Sprint Prompts for Copilot Agent
+
+- Contains `.md` prompt files used **exclusively** for **coding guidance during live sprints**.
+- Copilot should **rely only on files inside `prompts/`** for generating code during the live demo.
+- Each file is self-contained, follows the naming pattern `2_`, `3_`, `4_`, etc.
+
+> 🚫 Copilot should not infer implementation logic from files inside the `docs/` folder.
+> ✅ It should use only files inside `prompts/` for all sprint-based generation tasks.
 
 ---
