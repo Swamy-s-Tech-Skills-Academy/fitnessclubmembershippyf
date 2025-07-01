@@ -1,25 +1,29 @@
 # 🤖 GitHub Copilot Instructions: Fitness Club Membership System
 
-This project is a **45-minute live coding demo** to build a full-stack Flask app for managing a fitness club. GitHub Copilot Agent should assist by following the structured sprints, file structure, naming conventions, and prompt-driven development flow.
+Welcome to the **Fitness Club Membership System** – a 45-minute live coding demo using **Flask**, **Tailwind CSS**, and **SQLite**. This project is structured into sprints with clear instructions to help GitHub Copilot Agent provide contextual suggestions aligned with the development flow.
 
 ---
 
-## 🧭 General Instructions
+## 📦 Project Summary
 
-- **Language:** Python 3.11+
-- **Frameworks:** Flask, SQLAlchemy, Flask-WTF
-- **Database:** SQLite (`src/instance/fitness_club.db`)
-- **Frontend:** TailwindCSS (CDN, no build)
-- **Testing:** Pytest
-- **Environment:** `.venv`, configured via `requirements.txt`
+| Key Detail         | Value                      |
+| ------------------ | -------------------------- |
+| Language           | Python                     |
+| Backend Framework  | Flask                      |
+| ORM                | SQLAlchemy                 |
+| Forms Library      | Flask-WTF                  |
+| Frontend Framework | Tailwind CSS (CDN)         |
+| Database           | SQLite (in `src/instance`) |
+| Testing Framework  | Pytest                     |
+| Mode               | Live coding demo           |
+| Duration           | ~45 minutes                |
 
 ---
 
-## 📁 Folder Structure
+## 📁 Project Structure (Expected)
 
 ```
-project-root/
-│
+.
 ├── src/
 │   ├── app.py
 │   ├── config.py
@@ -27,114 +31,106 @@ project-root/
 │   ├── models.py
 │   ├── templates/
 │   ├── static/
-│   ├── instance/
-│
+│   └── instance/
 ├── tests/
 │   └── test_home.py
-│
 ├── docs/
 ├── requirements.txt
-├── .gitignore
 ├── README.md
+├── .gitignore
+├── .copilot/settings.json
 └── .github/
     └── copilot-instructions.md
 ```
 
 ---
 
-## 🧱 Sprints & Prompts
+## � Coding Standards
 
-### ✅ 1. Pre-Sprint Setup (`2_Pre-Sprint-Setup.md`)
-
-- Set up virtual environment
-- Install dependencies
-- Create project folder structure
-- Scaffold Flask app with welcome home page
-- TailwindCSS via CDN
-
-### ✅ 2. Sprint 1 - Backend Foundation (`3_Sprint1-Backend.md`)
-
-- Build 6 SQLAlchemy models
-- Create routes for CRUD and dashboard
-- Add `init_db.py` with sample data
-- Use relationships (foreign keys) where required
-
-### ✅ 3. Sprint 2 - Frontend Templates (`4_Sprint2-Frontend.md`)
-
-- Create templates for member listing, plan details, session schedule
-- Extend from a base layout with TailwindCSS
-- Integrate Flask-WTF forms
-- Add flash messaging and navigation
-
-### ✅ 4. Sprint 3 - Integration & Polish (`5_Sprint3-Integration.md`)
-
-- Add:
-  - Form validation (server/client side)
-  - CSV export routes
-  - AJAX endpoints
-  - Booking system with capacity enforcement
-  - Error handling & custom error pages
-  - Final polish and mobile responsiveness
+- `camelCase` → variables, functions
+- `PascalCase` → class and component names
+- `ALL_CAPS` → constants
+- `_prefix` → private class members
+- Prefer explicit error handling (`try/except`)
+- Use contextual logging for debugging
 
 ---
 
-## ✍️ Coding Standards
+## 🚦 Workflow and Sprint Files
 
-- Use `camelCase` for variables/functions
-- Use `PascalCase` for classes/models
-- Use `ALL_CAPS` for constants
-- Private members prefixed with `_`
-- Use `try/except` for async and DB operations
-- Always log contextual error messages
-- Organize HTML with semantic TailwindCSS components
+### 🛠 Sprint Files (Sequential)
+
+| Sprint Step | File Name                  | Duration | Summary                          |
+| ----------- | -------------------------- | -------- | -------------------------------- |
+| 1️⃣          | `2_Pre-Sprint-Setup.md`    | 5 min    | Setup virtual env, Flask, layout |
+| 2️⃣          | `3_Sprint1-Backend.md`     | 15 min   | SQLAlchemy models & routes       |
+| 3️⃣          | `4_Sprint2-Frontend.md`    | 15 min   | Jinja2 templates & Tailwind UI   |
+| 4️⃣          | `5_Sprint3-Integration.md` | 15 min   | Booking logic, CSV export        |
+
+### 📚 Reference Files
+
+- `6_Master-All-Prompts.md` → All sprint prompts in one
+- `7_Quick-Reference.md` → Checklist for validation
+- `8_Organization-Guide.md` → How to use this structure
 
 ---
 
-## 🧪 Validation Commands
+## ⚙️ Copilot Agent Expectations
+
+Copilot Agent should:
+
+- Follow file flow: `2_`, `3_`, `4_`, `5_`
+- Suggest model creation using SQLAlchemy
+- Recommend routes/views using Flask decorators
+- Generate Tailwind-based HTML templates
+- Propose Flask-WTF forms
+- Assist with Pytest test files
+- Use `cat <<EOF` format for writing files
+- Follow `settings.json` configuration
+
+---
+
+## ✅ Deliverables by End
+
+- Fully working Flask web app
+- CRUD + booking features with relationships
+- Professional UI with TailwindCSS
+- Data export capability
+- Testable endpoints via Pytest
+- Clean, modular source layout
+
+---
+
+## 🔁 Developer Commands (Validation)
 
 ```bash
-# Activate environment
-.venv\Scripts\activate  # Windows
-source .venv/bin/activate  # macOS/Linux
+# Setup
+python -m venv .venv
+source .venv/bin/activate       # or .venv\Scripts\activate
+pip install -r requirements.txt
 
-# Run app
+# Run database init
 cd src
-python app.py
+python init_db.py
 
-# Test home page
+# Start app
+python app.py
+# Open: http://localhost:5000
+
+# Run tests
 cd ..
 pytest tests/test_home.py -v
-
-# Trigger database
-python src/init_db.py
-
-# Access web UI
-http://localhost:5000
 ```
 
 ---
 
-## 🤖 Copilot Agent Expectations
+## 💡 Reminder to Copilot Agent
 
-- Prefer `cat <<EOF` blocks for script creation
-- Assist with:
-  - Flask route generation
-  - SQLAlchemy model relationships
-  - Flask-WTF forms with validation
-  - TailwindCSS components
-  - Pytest test creation
-- Respect prompt files in order (`2_`, `3_`, `4_`, `5_`)
-- Suggest code only within scope of sprint prompt
+If the user invokes a prompt:
+
+- Identify the current sprint file (based on file name)
+- Generate or complete relevant code
+- Respect coding standards and folder structure
+- Provide context-aware completions, not global changes
 
 ---
-
-## ✅ Completion Criteria
-
-- Working full-stack Flask app with member/session management
-- CSV export + AJAX endpoints
-- Mobile-ready Tailwind UI
-- Clean, tested, modular codebase
-
----
-
-> 🧠 Tip: Refer to `6_Master-All-Prompts.md` if Copilot loses context or to regenerate prompt sequences.
