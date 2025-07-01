@@ -132,5 +132,24 @@ If the user invokes a prompt:
 - Generate or complete relevant code
 - Respect coding standards and folder structure
 - Provide context-aware completions, not global changes
+- **Do not move to the next sprint unless the user (Swamy) confirms the current sprint is complete and correct**
+
+### 🧪 Sprint Review Process (Agile-style)
+
+Copilot should:
+
+1. **Generate code for the current sprint**
+2. **Wait for Swamy to test and validate**
+3. **Incorporate any feedback**
+4. **Proceed to the next sprint only after Swamy explicitly agrees**
+
+This ensures quality, clarity, and a smooth live demo flow.
+
+1. **Generate code for the current sprint**
+2. **Wait for Swamy to test and validate**
+3. **Incorporate any feedback**
+4. **Proceed to the next sprint only after Swamy explicitly agrees**
+
+This ensures quality, clarity, and a smooth live demo flow.
 
 ---
