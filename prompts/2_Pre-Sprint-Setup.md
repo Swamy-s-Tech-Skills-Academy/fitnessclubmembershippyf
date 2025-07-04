@@ -48,7 +48,7 @@ Forms & Validation:
 - email-validator==2.1.0
 
 Database & Core Dependencies:
-- SQLAlchemy==2.0.23
+- SQLAlchemy==2.0.41
 - Werkzeug==3.0.1
 - Jinja2==3.1.2
 - MarkupSafe==2.1.3
