@@ -9,15 +9,18 @@ This guide provides detailed presenter notes for conducting a 45-minute live cod
 ### **Pre-Session (5 minutes before start)**
 
 - Have VS Code/IDE ready
-- Terminal prepared with PowerShell
+- Terminal prepared with PowerShell (Windows 11 optimized)
 - Python 3.8+ verified installed
-- Internet connection confirmed for Tailwind CDN
+- Internet connection confirmed for CDN resources (Tailwind, Font Awesome, Google Fonts)
+- Verify PowerShell execution policy allows script execution
+
+> 💡 **Windows Note**: All commands in this guide use PowerShell syntax optimized for Windows 11
 
 ### **Opening (2 minutes) - Total: 2 min**
 
-```
+```text
 "Today we're building a complete fitness club membership system in 45 minutes.
-We'll use Flask, SQLAlchemy, and Tailwind CSS to create a production-ready app
+We'll use Flask, SQLAlchemy, Tailwind CSS, Font Awesome, and Google Fonts to create a production-ready app
 with member management, session booking, and analytics dashboard."
 ```
 
@@ -35,7 +38,7 @@ with member management, session booking, and analytics dashboard."
 
    ```powershell
    mkdir fitness-club-demo
-   cd fitness-club-demo
+   Set-Location fitness-club-demo
    ```
 
 2. **Copy-paste setup prompt** from `2_Pre-Sprint-Setup.md` (1 minute)
@@ -48,13 +51,13 @@ with member management, session booking, and analytics dashboard."
    ```powershell
    python -m venv .venv
    .venv\Scripts\activate
-   # Show requirements.txt creation
+   # requirements.txt is already provided in starter project
    pip install -r requirements.txt
-   mkdir src tests docs
    mkdir src\templates src\static src\instance
    ```
 
 4. **Validate setup** (30 seconds)
+
    ```powershell
    python --version
    pip list
@@ -63,8 +66,9 @@ with member management, session booking, and analytics dashboard."
 **Key Talking Points:**
 
 - "Virtual environments keep dependencies isolated"
-- "We're following industry best practices from day one"
+- "All configuration files are provided in the starter project"
 - "This folder structure scales for larger projects"
+- "requirements.txt, .gitignore, and .copilot settings are ready to use"
 
 ---
 
@@ -87,12 +91,12 @@ with member management, session booking, and analytics dashboard."
 4. **Test the backend** (3 minutes)
 
    ```powershell
-   cd src
+   Set-Location src
    python init_db.py
    python app.py
    ```
 
-   - Open http://localhost:5000
+   - Open <http://localhost:5000>
    - Test /members, /plans endpoints
 
 5. **Quick validation** (30 seconds)
@@ -123,7 +127,7 @@ with member management, session booking, and analytics dashboard."
 
 3. **Monitor template creation** (10 minutes)
 
-   - **Base template** (2 min): Point out Tailwind CDN and navigation
+   - **Base template** (2 min): Point out CDN integrations (Tailwind, Font Awesome, Google Fonts) and navigation
    - **Dashboard** (3 min): Highlight analytics cards and responsive design
    - **Member templates** (3 min: Show form validation and mobile layout
    - **Session templates** (2 min): Demonstrate booking interface
@@ -141,7 +145,7 @@ with member management, session booking, and analytics dashboard."
 
 **Key Talking Points:**
 
-- "Tailwind CSS gives us professional design instantly"
+- "Our frontend stack gives us professional design instantly: Tailwind for styling, Font Awesome for icons, and Google Fonts for typography"
 - "Mobile-first approach ensures accessibility"
 - "Notice the consistent color scheme and typography"
 - "Forms have built-in validation styling"
@@ -191,41 +195,6 @@ with member management, session booking, and analytics dashboard."
 
 ---
 
-## 🧪 **QUICK VALIDATION SCRIPT**
-
-### **Using the Application Validator**
-
-After completing all sprints, you can use the built-in validation script:
-
-```powershell
-# From project root (make sure Flask app is running)
-cd tests
-python validate_application.py
-```
-
-**What it tests:**
-
-- Homepage loads successfully
-- All main pages (members, plans, sessions) working
-- Database has sample data
-- API endpoints responding correctly
-
-**Requirements:**
-
-- Flask app must be running (`python src/app.py`)
-- `requests` library installed (included in requirements.txt)
-- All dependencies properly installed
-
-**Alternative validation:**
-Use the comprehensive test suite in the `tests/` folder:
-
-```powershell
-cd tests
-python quick_validation.py
-```
-
----
-
 ## 🎤 **PRESENTATION TIPS**
 
 ### **Energy & Engagement:**
@@ -269,7 +238,7 @@ python quick_validation.py
 
 **Frontend Issues:**
 
-- **Tailwind not loading**: Check internet connection for CDN
+- **CDN resources not loading**: Check internet connection for external CSS/JS
 - **Templates not found**: Verify `src/templates/` structure
 - **Styling broken**: Clear browser cache
 
@@ -323,7 +292,7 @@ If live coding fails, have a pre-built version ready:
 - [ ] Python 3.8+ installed and verified
 - [ ] VS Code or preferred IDE ready
 - [ ] PowerShell/Terminal configured
-- [ ] Internet connection stable (for Tailwind CDN)
+- [ ] Internet connection stable (for CDN resources)
 - [ ] Screen sharing/projection tested
 - [ ] Font sizes increased for visibility
 

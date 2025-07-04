@@ -3,8 +3,9 @@
     "language": "python",
     "framework": "flask",
     "useVirtualEnv": true,
-    "testFramework": "pytest",
     "frontend": "tailwindcss",
+    "icons": "fontawesome",
+    "typography": "googlefonts",
     "database": "sqlite",
     "orm": "sqlalchemy",
     "formLibrary": "flask-wtf",
@@ -29,7 +30,6 @@
         "appLocation": "src/",
         "templatesLocation": "src/templates/",
         "staticLocation": "src/static/",
-        "testsLocation": "tests/",
         "databaseLocation": "src/instance/"
     }
 }
