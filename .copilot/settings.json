@@ -1,0 +1,35 @@
+{
+    "projectType": "flask",
+    "language": "python",
+    "framework": "flask",
+    "useVirtualEnv": true,
+    "testFramework": "pytest",
+    "frontend": "tailwindcss",
+    "database": "sqlite",
+    "orm": "sqlalchemy",
+    "formLibrary": "flask-wtf",
+    "developmentMode": "live-coding-demo",
+    "sprintBased": true,
+    "targetDuration": "45-minutes",
+    "features": [
+        "member-management",
+        "session-booking",
+        "membership-plans",
+        "csv-export",
+        "ajax-endpoints",
+        "responsive-ui"
+    ],
+    "codingStandards": {
+        "variableNaming": "camelCase",
+        "classNaming": "PascalCase",
+        "constantNaming": "ALL_CAPS",
+        "privateMembers": "_prefixed"
+    },
+    "fileStructure": {
+        "appLocation": "src/",
+        "templatesLocation": "src/templates/",
+        "staticLocation": "src/static/",
+        "testsLocation": "tests/",
+        "databaseLocation": "src/instance/"
+    }
+}

@@ -19,6 +19,20 @@ Build a complete fitness club membership system using **Flask**, **Tailwind CSS*
 6. **[7_Quick-Reference.md](7_Quick-Reference.md)** - Validation checklist
 7. **[8_Organization-Guide.md](8_Organization-Guide.md)** - How to use these files
 
+## 📚 **QUICK ACCESS**
+
+- [2_Pre-Sprint-Setup.md](2_Pre-Sprint-Setup.md) - 🔧 Setup & Environment
+- [3_Sprint1-Backend.md](3_Sprint1-Backend.md) - 🛠 Backend Development
+- [4_Sprint2-Frontend.md](4_Sprint2-Frontend.md) - 🎨 Frontend Templates
+- [5_Sprint3-Integration.md](5_Sprint3-Integration.md) - 🔗 Integration & Polish
+- [6_Master-All-Prompts.md](6_Master-All-Prompts.md) - 🧾 All Prompts Combined
+- [7_Quick-Reference.md](7_Quick-Reference.md) - ✅ Validation Checklist
+- [8_Organization-Guide.md](8_Organization-Guide.md) - 📂 Project Structure
+
+## 🌐 **LIVE DEMO**
+
+Coming soon: [Deployed App Link](https://your-deployment-url.com)
+
 ## ⏰ **TIMING BREAKDOWN**
 
 - **Pre-Sprint Setup**: 5 minutes (environment)
