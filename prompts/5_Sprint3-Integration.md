@@ -5,69 +5,96 @@
 ```text
 Complete the fitness club system with advanced features and production polish:
 
+PREREQUISITE VERIFICATION:
+- Sprint 1: All models have required properties (member.full_name, plan.price, session.duration_minutes)
+- Sprint 2: All templates work without UndefinedError or BuildError
+- All routes accessible: /, /members, /members/create, /members/<id>, /members/<id>/edit, /plans, /sessions, /sessions/schedule
+
 ADVANCED FEATURES TO ADD:
-1. Form validation (server-side and client-side)
-2. CSV export functionality for members and sessions
-3. AJAX endpoints for member status toggle and session bookings
+1. Form validation (server-side Flask-WTF + client-side JavaScript)
+2. CSV export functionality (/export/members, /export/sessions)
+3. AJAX endpoints (/members/<id>/toggle-status, /sessions/<id>/book, /members/<id>/assign-plan)
 4. Enhanced dashboard with revenue calculations and growth metrics
-5. Session booking system with capacity management
+5. Session booking system with capacity management and duplicate prevention
 6. Search and filtering for members and sessions
-7. Error handling and user feedback messages
-8. Mobile optimization and final polish
+7. Professional error handling (404, 500 pages)
+8. Mobile optimization and production polish
 
 SPECIFIC IMPLEMENTATIONS:
-- Add CSV export routes (/export/members, /export/sessions)
-- Create API endpoints (/api/member/<id>/toggle-status, /api/session/<id>/bookings)
-- Enhance app.py with comprehensive validation
-- Add JavaScript for AJAX calls and form enhancement
-- Implement session booking logic with capacity checking
+
+SERVER-SIDE (app.py updates):
+- Add Flask-WTF form classes with comprehensive validation
+- Add CSV export routes with proper headers and error handling
+- Add AJAX endpoints with JSON responses (no /api/ prefix - use existing route structure)
+- Enhance dashboard route with revenue/growth calculations
 - Add context processor for navigation highlighting
-- Create professional error pages
-- Add final styling touches and animations
+- Add error handlers for 404/500 with custom templates
+- Fix any remaining model attribute issues
+
+CLIENT-SIDE (new static/js/app.js):
+- AJAX functions for member status toggle, session booking, plan assignment
+- Form validation with real-time feedback
+- Search and filtering with debounced input
+- Loading states and user feedback notifications
+- CSV export functionality with loading indicators
+
+TEMPLATES TO CREATE:
+- templates\errors\404.html (professional 404 page)
+- templates\errors\500.html (professional 500 page)
 
 VALIDATION REQUIREMENTS:
-- No duplicate emails for members
-- Date validation (no future birth dates)
+- No duplicate emails for members (server + client validation)
+- Date validation (no future birth dates, no past session dates)
 - Session capacity cannot exceed max_capacity
 - Proper error messages for all scenarios
 - Success notifications for all actions
+- Mobile responsiveness maintained
 
 The system should be production-ready with all features working smoothly.
 ```
 
-## ✅ **VALIDATION COMMANDS**
+## ✅ **POST-DEVELOPMENT VERIFICATION**
 
-```bash
-# ✅ Activate virtual environment (choose your platform)
-# Windows:
-.venv\Scripts\activate
-# macOS/Linux:
-# source .venv/bin/activate
+After Copilot completes the integration features, manually verify:
 
-# ✅ Run the application
-cd src
+```powershell
+# ✅ PREREQUISITE: Verify Sprints 1 & 2 are working
+Set-Location src
 python app.py
-# Visit http://localhost:5000
+# Verify all pages load without errors:
+# - <http://localhost:5000/> (dashboard)
+# - <http://localhost:5000/members> (member list)
+# - <http://localhost:5000/members/create> (registration)
+# - <http://localhost:5000/plans> (plans display)
+# - <http://localhost:5000/sessions> (sessions list)
 
-# ✅ Test all functionality
-# - Create new members (test email validation)
+# ✅ Verify dependencies (should already be installed)
+# Flask-WTF and WTForms are in requirements.txt
+pip list | Select-String -Pattern "flask-wtf" -CaseSensitive:$false
+pip list | Select-String -Pattern "wtforms" -CaseSensitive:$false
+
+# ✅ Verify all advanced functionality
+# - Create new members (check email validation)
 # - Export CSV files (/export/members, /export/sessions)
-# - Book sessions (test capacity limits)
+# - Book sessions (check capacity limits)
 # - Toggle member status (AJAX functionality)
-# - Test form validation (client and server-side)
+# - Verify form validation (client and server-side)
 # - Check mobile responsiveness
-# - Verify error handling
+# - Verify error handling (visit /nonexistent-page)
 
-# ✅ Run pytest validation
-cd ..
-pytest tests/ -v
+# ✅ Production readiness check
+# - All routes work without errors
+# - No UndefinedError or BuildError exceptions
+# - Mobile responsive design maintained
+# - Professional error pages display
+# - AJAX endpoints return proper JSON
 ```
 
 ## 🎯 **EXPECTED DELIVERABLES**
 
 - ✅ Complete form validation (server-side & client-side)
 - ✅ CSV export functionality (/export/members, /export/sessions)
-- ✅ AJAX endpoints working (/api/member/<id>/toggle-status, /api/session/<id>/bookings)
+- ✅ AJAX endpoints working (member status, session booking, plan assignment)
 - ✅ Session booking system with capacity management
 - ✅ Enhanced dashboard analytics (revenue, growth metrics)
 - ✅ Production-ready polish and mobile optimization
@@ -79,6 +106,52 @@ pytest tests/ -v
 **Time**: 15 minutes
 
 **Result**: Production-ready fitness club management system
+
+## 🚨 **TROUBLESHOOTING GUIDE**
+
+### **Common Issues & Fixes:**
+
+**UndefinedError: 'models.MembershipPlan object' has no attribute 'price'**
+
+- Fix: Add `@property price` to MembershipPlan model returning `monthly_price`
+
+**BuildError: Could not build url for endpoint 'edit_member'**
+
+- Fix: Add missing route `@app.route('/members/<int:member_id>/edit')` to app.py
+
+**AttributeError: 'WorkoutSession' has no attribute 'duration_minutes'**
+
+- Fix: Add `@property duration_minutes` to WorkoutSession calculating from start/end times
+
+**Template shows 'member.name' instead of full name**
+
+- Fix: Use `member.full_name` in templates, ensure `@property full_name` exists in model
+
+**POSTS_PER_PAGE not found**
+
+- Fix: Add `POSTS_PER_PAGE = 10` to config.py
+
+### **Pre-Sprint 3 Validation:**
+
+#### **PowerShell Commands:**
+
+```powershell
+# Test these work before starting Sprint 3:
+Invoke-WebRequest -Uri "http://localhost:5000/" -Method GET         # Should return 200
+Invoke-WebRequest -Uri "http://localhost:5000/members" -Method GET  # Should return 200
+Invoke-WebRequest -Uri "http://localhost:5000/plans" -Method GET    # Should return 200
+Invoke-WebRequest -Uri "http://localhost:5000/sessions" -Method GET # Should return 200
+```
+
+#### **Alternative: Manual Browser Testing (Recommended):**
+
+```text
+# Open these URLs in your browser to verify they work:
+- <http://localhost:5000/> (should show dashboard)
+- <http://localhost:5000/members> (should show member list)
+- <http://localhost:5000/plans> (should show plans)
+- <http://localhost:5000/sessions> (should show sessions)
+```
 
 ## 🤖 **COPILOT AGENT COMPATIBILITY**
 
@@ -95,7 +168,31 @@ This sprint is optimized for Copilot Agent execution:
 - [2_Pre-Sprint-Setup.md](2_Pre-Sprint-Setup.md) - 🔧 Setup & Environment
 - [3_Sprint1-Backend.md](3_Sprint1-Backend.md) - 🛠 Backend Development
 - [4_Sprint2-Frontend.md](4_Sprint2-Frontend.md) - 🎨 Frontend Templates
-- [6_Master-All-Prompts.md](6_Master-All-Prompts.md) - 🧾 All Prompts Combined
-- [7_Quick-Reference.md](7_Quick-Reference.md) - ✅ Validation Checklist
 
 **Final Note**: After completing Sprint 3, you'll have a fully functional, production-ready fitness club membership system with all modern web app features!
+
+## 🎉 **SPRINT 3 COMPLETION**
+
+🏆 **Congratulations!** You've completed the entire fitness club membership system!
+
+Your application now includes:
+
+- **Complete member management** with validation and Font Awesome icons
+- **Session booking** with capacity management and real-time updates
+- **CSV export functionality** with proper error handling
+- **Real-time AJAX updates** with user feedback
+- **Professional responsive design** with Tailwind CSS and Google Fonts
+- **Production-ready error handling** with custom 404/500 pages
+
+## 🚀 **FINAL TESTING**
+
+After completion, test these key features:
+
+1. Create a new member (test validation)
+2. Export member/session CSV files
+3. Book a session (test capacity limits)
+4. Toggle member status (test AJAX)
+5. Test mobile responsiveness
+6. Verify all error handling works
+
+Your fitness club management system is now production-ready! 🎯

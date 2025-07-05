@@ -1,6 +1,6 @@
 # 🤖 GitHub Copilot Instructions: Fitness Club Membership System
 
-Welcome to the **Fitness Club Membership System** – a 45-minute live coding demo using **Flask**, **Tailwind CSS**, and **SQLite**. This project is structured into sprints with clear instructions to help GitHub Copilot Agent provide contextual suggestions aligned with the development flow.
+Welcome to the **Fitness Club Membership System** – a 45-minute live coding demo using **Flask**, **Tailwind CSS**, **Font Awesome**, **Google Fonts**, and **SQLite**. This project is structured into sprints with clear instructions to help GitHub Copilot Agent provide contextual suggestions aligned with the development flow.
 
 ---
 
@@ -13,8 +13,9 @@ Welcome to the **Fitness Club Membership System** – a 45-minute live coding de
 | ORM                | SQLAlchemy                 |
 | Forms Library      | Flask-WTF                  |
 | Frontend Framework | Tailwind CSS (CDN)         |
+| Icons              | Font Awesome (CDN)         |
+| Typography         | Google Fonts (CDN)         |
 | Database           | SQLite (in `src/instance`) |
-| Testing Framework  | Pytest                     |
 | Mode               | Live coding demo           |
 | Duration           | ~45 minutes                |
 
@@ -22,25 +23,28 @@ Welcome to the **Fitness Club Membership System** – a 45-minute live coding de
 
 ## 📁 Project Structure (Expected)
 
+**Starter Project Includes:**
+
+- A. `.copilot/settings.json` - GitHub Copilot configuration
+- B. `.github/copilot-instructions.md` - Copilot Agent instructions
+- C. `docs/` folder - Documentation and images
+- D. `prompts/` folder - All sprint `.md` files with copy-paste prompts
+- E. `.gitignore` - Python/Flask optimized ignore rules
+- F. `LICENSE` - Project license
+- G. `README.md` - Project documentation
+- H. `requirements.txt` - All Python dependencies with versions
+
+**Generated During Development:**
+
 ```
-.
-├── src/
-│   ├── app.py
-│   ├── config.py
-│   ├── init_db.py
-│   ├── models.py
-│   ├── templates/
-│   ├── static/
-│   └── instance/
-├── tests/
-│   └── test_home.py
-├── docs/
-├── requirements.txt
-├── README.md
-├── .gitignore
-├── .copilot/settings.json
-└── .github/
-    └── copilot-instructions.md
+src\
+├── app.py
+├── config.py
+├── init_db.py
+├── models.py
+├── templates\
+├── static\
+└── instance\
 ```
 
 ---
@@ -60,32 +64,11 @@ Welcome to the **Fitness Club Membership System** – a 45-minute live coding de
 
 Copilot Agent must remember:
 
-- The `src/` and `tests/` folders are **at the same level** in the project root.
-- Test files (like `tests/test_home.py`) must **manually add `src/` to `sys.path`** before importing from `src`.
-
-### 🔧 Example (for `test_home.py`)
-
-```python
-# isort: off
-import pytest
-import sys
-import os
-
-# Add the src directory to the Python path
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'src'))
-
-# Import the Flask app after path is adjusted
-from app import app  # noqa
-# isort: on
-```
-
-> ⚠️ Copilot should **not move the `from app import app`** line above the `sys.path.insert(...)`. If necessary, use inline imports or disable `isort` for that block.
-
-### 🛡 Why It Matters
-
-- Prevents **`ModuleNotFoundError`** in test execution
-- Ensures correct import behavior when using `pytest` from root directory
-- Supports multi-platform compatibility (VS Code, GitHub Codespaces, etc.)
+- The project structure is focused on development with Flask app in `src\` folder
+- All application code resides in the `src\` directory
+- Database files are stored in `src\instance\`
+- Templates are in `src\templates\` and static files in `src\static\`
+- Use Windows path separators (\) in commands and file paths
 
 ---
 
@@ -93,18 +76,16 @@ from app import app  # noqa
 
 ### 🛠 Sprint Files (Sequential)
 
-| Sprint Step | File Name                  | Duration | Summary                          |
-| ----------- | -------------------------- | -------- | -------------------------------- |
-| 1️⃣          | `2_Pre-Sprint-Setup.md`    | 5 min    | Setup virtual env, Flask, layout |
-| 2️⃣          | `3_Sprint1-Backend.md`     | 15 min   | SQLAlchemy models & routes       |
-| 3️⃣          | `4_Sprint2-Frontend.md`    | 15 min   | Jinja2 templates & Tailwind UI   |
-| 4️⃣          | `5_Sprint3-Integration.md` | 15 min   | Booking logic, CSV export        |
+| Sprint Step | File Name                  | Duration | Summary                                         |
+| ----------- | -------------------------- | -------- | ----------------------------------------------- |
+| 1️⃣          | `2_Pre-Sprint-Setup.md`    | 5 min    | Setup virtual env, Flask, CDN resources         |
+| 2️⃣          | `3_Sprint1-Backend.md`     | 15 min   | SQLAlchemy models & routes                      |
+| 3️⃣          | `4_Sprint2-Frontend.md`    | 15 min   | Templates, Tailwind, FA icons, Google Fonts     |
+| 4️⃣          | `5_Sprint3-Integration.md` | 15 min   | AJAX, validation, CSV export, production polish |
 
 ### 📚 Reference Files
 
-- `6_Master-All-Prompts.md` → All sprint prompts in one
-- `7_Quick-Reference.md` → Checklist for validation
-- `8_Organization-Guide.md` → How to use this structure
+_Note: Reference files have been removed to focus on core sprint workflow_
 
 ---
 
@@ -115,11 +96,14 @@ Copilot Agent should:
 - Follow file flow: `2_`, `3_`, `4_`, `5_`
 - Suggest model creation using SQLAlchemy
 - Recommend routes/views using Flask decorators
-- Generate Tailwind-based HTML templates
-- Propose Flask-WTF forms
-- Assist with Pytest test files
-- Use `cat <<EOF` format for writing files
+- Generate Tailwind-based HTML templates with Font Awesome icons
+- Integrate Google Fonts typography (Inter for body, Poppins for headings)
+- Propose Flask-WTF forms with comprehensive validation
+- Generate JavaScript/AJAX functionality for dynamic interactions
+- Use PowerShell `@"..."@` format for writing files (Windows-optimized)
 - Follow `settings.json` configuration
+- Focus on development workflow (no test file generation)
+- Use Windows path separators (\) and PowerShell commands
 
 ---
 
@@ -127,33 +111,33 @@ Copilot Agent should:
 
 - Fully working Flask web app
 - CRUD + booking features with relationships
-- Professional UI with TailwindCSS
+- Professional UI with TailwindCSS, Font Awesome icons, and Google Fonts
 - Data export capability
-- Testable endpoints via Pytest
 - Clean, modular source layout
+- Browser-testable endpoints
 
 ---
 
-## 🔁 Developer Commands (Validation)
+## 🔁 Developer Commands (For Manual Verification)
 
-```bash
-# Setup
+### **Windows PowerShell:**
+
+```powershell
+# Setup (performed by user, not Copilot)
 python -m venv .venv
-source .venv/bin/activate       # or .venv\Scripts\activate
+.venv\Scripts\activate
 pip install -r requirements.txt
 
 # Run database init
-cd src
+Set-Location src
 python init_db.py
 
 # Start app
 python app.py
-# Open: http://localhost:5000
-
-# Run tests
-cd ..
-pytest tests/test_home.py -v
+# Open: <http://localhost:5000>
 ```
+
+> **Note**: These commands are for user verification after Copilot generates the code. The starter project includes all configuration files: `.gitignore`, `requirements.txt`, `.copilot/settings.json`, `.github/copilot-instructions.md`, `docs/`, `prompts/`, `LICENSE`, and `README.md`.
 
 ---
 
@@ -182,19 +166,11 @@ This ensures quality, clarity, and a smooth live demo flow.
 
 ## 📂 Folder Purpose Clarification
 
-### 🧾 `docs/` – Documentation for Humans
-
-- Contains supporting documentation, references, and helper files.
-- Used by Swamy or contributors for understanding structure, flow, or writing articles.
-- **Not intended for Copilot code generation.**
-
 ### 💡 `prompts/` – Sprint Prompts for Copilot Agent
 
 - Contains `.md` prompt files used **exclusively** for **coding guidance during live sprints**.
 - Copilot should **rely only on files inside `prompts/`** for generating code during the live demo.
 - Each file is self-contained, follows the naming pattern `2_`, `3_`, `4_`, etc.
-
-> 🚫 Copilot should not infer implementation logic from files inside the `docs/` folder.
-> ✅ It should use only files inside `prompts/` for all sprint-based generation tasks.
+- Focus on development workflow and live coding demonstrations.
 
 ---
